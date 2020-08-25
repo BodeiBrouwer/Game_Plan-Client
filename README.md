@@ -1,68 +1,146 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Game Plan
+<br>
 
-## Available Scripts
+## Description
+Share the best improv warm-ups, exercises and scene formats with the world.
+Add uploaded games to your lesson plan to put together the perfect improv training.
+<br>
 
-In the project directory, you can run:
+## User Stories
+- **404** - As a user I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault.
+- **login-signup** - As a user I want to see a page that lets me easily sign in as an existing user. 
+- **signup** - As a user I want to see a page that very briefly explains Game Plan and lets me easily sign up.
+- **games-page** - As a user I want to see a page that lets me search and like warm-ups, exercises and scenes by tags and popularity.
+- **game-details-page** - As a user I want to see the specs of the game: name, description, purpose, creator and video(optional).
+- **new-game-page** - As a user I want to add my own games with specs: name, description, purpose, creator, tags and video(optional).
+- **my-lessons-page** - As a user I want to see an overview of all the lessons I have created.
+- **new-lesson-page** - As a user I want to be able to change my password and username and potentially connect with other users.
+- **lesson-details-page** - As a user I want to see the details of my lessons including: name, description, duration, games and notes.
+<br>
 
-### `npm start`
+## Backlog
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ - Comment on exercises
+ - Make lesson plans public
+ - Suggestion API (generate random improv suggestions)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<br>
 
-### `npm test`
+# Client
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Routes (back-end)
 
-### `npm run build`
+- /                 - Home (limited games list)
+- /auth/signup      - Signup form
+- /auth/login       - Login form
+- /games            - games list
+- /games/create     - create a game
+- /games/:id        - games detail
+- /lessons          - my lessons
+- /lessons/create   - create a lesson
+- /lessons/:id      - lesson detail
+- 404
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Pages
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Home Page (public)
+- Sign in Page (anon only)
+- Log in Page (anon only)
+- Games List Page (public)
+- Game Detail Page (public)
+- Games Create (user only)
+- My lessons (user only)
+- Create lesson (user only)
+- Lesson details (user only)
+- 404 Page (public)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Components
+- LoginPage
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- SignupPage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- NavBar
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- GamesList
 
-## Learn More
+- GameCreate
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- GameDetails
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- MyLessons
 
-### Code Splitting
+- LessonCreate
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+- LessonDetails
 
-### Analyzing the Bundle Size
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+## Services
 
-### Making a Progressive Web App
+- Auth Service
+  - auth.login(user)
+  - auth.signup(user)
+  - auth.logout()
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+- Game Plan Service
+  - gameplan.filter(warm-up, exercise, scenes) // for different types of games
+  - gameplan.game-details(id)
+  - gameplan.game-add(id)
+  - gameplan.game-edit(id)
+  - gameplan.lessons
+  - gameplan.lesson-details(id)   
+  - gameplan.lesson-add(id)
+  - gameplan.lesson-delete(id)
+  - gameplan.lesson-edit(id)
 
-### Advanced Configuration
+<br>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+# Server / back end
 
-### Deployment
+## Models
+ 
+ - User 
+    new Schema ({
+     	_id: ,
+      email: String, required: true, unique: true,
+      password: String, minlength: 6, maxlength: 12, required: true,
+     	username: String, required: true, maxlength: 20
+      lessons : Array
+		})
+          
+  - Games 
+    new Schema ({
+      _id: ,
+      name: String, required: true,
+      description: String, required: true,
+      purpose: String, required: true,
+      credit: String,
+      video: String,
+      tags: Array, required: true,
+    })
+    
+  - Lessons 
+	  new Schema ({
+			_id: ,
+	    name: String, required: true,
+      description: String, required: true,
+      length: Number,
+      notes: Number,
+    })
+    
+    <br>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+# Links
 
-### `npm run build` fails to minify
+## Github Client
+https://trello.com/b/0b6qhdDv/planning-tool
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Github Client
+https://github.com/BodeiBrouwer/Game_Plan-Client
+
+## Github Server
+https://github.com/BodeiBrouwer/Game_Plan-server
+
+## Slides
+https://docs.google.com/presentation/d/1L63Xgmsu6BMaW9f28KyoThLLVVmRT4_KnsPPFUZItaw/edit?usp=sharing
