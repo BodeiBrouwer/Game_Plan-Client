@@ -20,7 +20,7 @@ Add uploaded games to your lesson plan to put together the perfect improv traini
 
 ## Backlog
 
- - Comment on exercises
+ - Comment on games
  - Make lesson plans public
  - Suggestion API (generate random improv suggestions)
 
@@ -100,7 +100,9 @@ Add uploaded games to your lesson plan to put together the perfect improv traini
 
 ## Models
  
- - User 
+### User 
+
+```
     new Schema ({
      	_id: ,
       email: String, required: true, unique: true,
@@ -108,8 +110,10 @@ Add uploaded games to your lesson plan to put together the perfect improv traini
      	username: String, required: true, maxlength: 20
       lessons : Array
 		})
-          
-  - Games 
+```
+
+### Games 
+```
     new Schema ({
       _id: ,
       name: String, required: true,
@@ -119,8 +123,10 @@ Add uploaded games to your lesson plan to put together the perfect improv traini
       video: String,
       tags: Array, required: true,
     })
+```
     
-  - Lessons 
+### Lessons 
+```
 	  new Schema ({
 			_id: ,
 	    name: String, required: true,
@@ -128,6 +134,7 @@ Add uploaded games to your lesson plan to put together the perfect improv traini
       length: Number,
       notes: Number,
     })
+```
     
     <br>
 
