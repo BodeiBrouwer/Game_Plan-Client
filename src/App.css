@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.select-search {
+  width: 500px;
+  position: relative;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px;
+  box-sizing: content-box;
+}
+
+.select-search *,
+.select-search *::after,
+.select-search *::before {
+  box-sizing: inherit;
+}
+
+.select-search__option.is-highlighted.is-selected,
+.select-search__option.is-selected:hover {
+    background: #2eb378;
+    color: #fff;
+}
+
+.select-search--multiple {
+  border-radius: 3px;
+  overflow: hidden;
+}

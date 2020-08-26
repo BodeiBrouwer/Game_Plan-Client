@@ -33,14 +33,15 @@ Add uploaded games to your training plan to put together the perfect improv trai
 
 ## Routes (back-end)
 
-- /                   - Home (limited games list)
-- /auth/signup        - Signup form
-- /auth/login         - Login form
-- /games              - games list
-- /games/create       - create a game
-- /games/:id          - games detail
-- /games/:id/edit     - edit games detail
-- /games/:id/delete   - delete games
+- /                     - Home (limited games list)
+- /auth/signup          - Signup form
+- /auth/login           - Login form
+- /games                - games list
+- /games/create         - create a game
+- /games/:id            - games detail
+- /games/:id/edit       - edit games detail
+- /games/:id/add        - add game to training
+- /games/:id/delete     - delete games
 - /trainings            - my trainings
 - /trainings/create     - create a training
 - /trainings/:id        - training detail
@@ -73,6 +74,8 @@ Add uploaded games to your training plan to put together the perfect improv trai
 - NavBar
 
 - SearchGames
+
+- Tags
 
 - GamesList
 
