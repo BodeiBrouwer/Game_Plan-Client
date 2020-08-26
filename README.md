@@ -3,7 +3,7 @@
 
 ## Description
 Share the best improv warm-ups, exercises and scene formats with the world.
-Add uploaded games to your lesson plan to put together the perfect improv training.
+Add uploaded games to your training plan to put together the perfect improv training.
 <br>
 
 ## User Stories
@@ -13,16 +13,19 @@ Add uploaded games to your lesson plan to put together the perfect improv traini
 - **games-page** - As a user I want to see a page that lets me search and like warm-ups, exercises and scenes by tags and popularity.
 - **game-details-page** - As a user I want to see the specs of the game: name, description, purpose, creator and video(optional).
 - **new-game-page** - As a user I want to add my own games with specs: name, description, purpose, creator, tags and video(optional).
-- **my-lessons-page** - As a user I want to see an overview of all the lessons I have created.
-- **new-lesson-page** - As a user I want to be able to change my password and username and potentially connect with other users.
-- **lesson-details-page** - As a user I want to see the details of my lessons including: name, description, duration, games and notes.
+- **edit-game-page** - As a user I want to be able to edit the games that I have added.
+- **my-trainings-page** - As a user I want to see an overview of all the trainings I have created.
+- **new-training-page** - As a user I want to be able to change my password and username and potentially connect with other users.
+- **training-details-page** - As a user I want to see the details of my trainings including: name, description, duration, games and notes.
+- **edit-training-page** - As a user I want to be able to edit the trainings that I have added.
 <br>
 
 ## Backlog
 
  - Comment on games
- - Make lesson plans public
+ - Make training plans public
  - Suggestion API (generate random improv suggestions)
+ - My games page
 
 <br>
 
@@ -30,15 +33,19 @@ Add uploaded games to your lesson plan to put together the perfect improv traini
 
 ## Routes (back-end)
 
-- /                 - Home (limited games list)
-- /auth/signup      - Signup form
-- /auth/login       - Login form
-- /games            - games list
-- /games/create     - create a game
-- /games/:id        - games detail
-- /lessons          - my lessons
-- /lessons/create   - create a lesson
-- /lessons/:id      - lesson detail
+- /                   - Home (limited games list)
+- /auth/signup        - Signup form
+- /auth/login         - Login form
+- /games              - games list
+- /games/create       - create a game
+- /games/:id          - games detail
+- /games/:id/edit     - edit games detail
+- /games/:id/delete   - delete games
+- /trainings            - my trainings
+- /trainings/create     - create a training
+- /trainings/:id        - training detail
+- /trainings/:id/edit   - edit training detail
+- /trainings/:id/delete - delete trainings
 - 404
 
 
@@ -50,9 +57,11 @@ Add uploaded games to your lesson plan to put together the perfect improv traini
 - Games List Page (public)
 - Game Detail Page (public)
 - Games Create (user only)
-- My lessons (user only)
-- Create lesson (user only)
-- Lesson details (user only)
+- Games Edit (user only)
+- My trainings (user only)
+- Create training (user only)
+- training Details (user only)
+- training Edit (user only)
 - 404 Page (public)
 
 
@@ -63,17 +72,27 @@ Add uploaded games to your lesson plan to put together the perfect improv traini
 
 - NavBar
 
+- SearchGames
+
 - GamesList
 
 - GameCreate
 
+- GameEdit
+
+- GameDelete
+
 - GameDetails
 
-- MyLessons
+- Searchtrainings
 
-- LessonCreate
+- TrainingsList
 
-- LessonDetails
+- TrainingCreate
+
+- TrainingEdit
+
+- TrainingDetails
 
 
 ## Services
@@ -88,11 +107,11 @@ Add uploaded games to your lesson plan to put together the perfect improv traini
   - gameplan.game-details(id)
   - gameplan.game-add(id)
   - gameplan.game-edit(id)
-  - gameplan.lessons
-  - gameplan.lesson-details(id)   
-  - gameplan.lesson-add(id)
-  - gameplan.lesson-delete(id)
-  - gameplan.lesson-edit(id)
+  - gameplan.trainings
+  - gameplan.training-details(id)   
+  - gameplan.training-add(id)
+  - gameplan.training-delete(id)
+  - gameplan.training-edit(id)
 
 <br>
 
@@ -108,7 +127,6 @@ Add uploaded games to your lesson plan to put together the perfect improv traini
       email: String, required: true, unique: true,
       password: String, minlength: 6, maxlength: 12, required: true,
      	username: String, required: true, maxlength: 20
-      lessons : Array
 		})
 ```
 
@@ -116,23 +134,26 @@ Add uploaded games to your lesson plan to put together the perfect improv traini
 ```
     new Schema ({
       _id: ,
+      creator: Object Id (user), required: true,
       name: String, required: true,
       description: String, required: true,
       purpose: String, required: true,
       credit: String,
       video: String,
-      tags: Array, required: true,
+      tags: Array (of String), required: true,
     })
 ```
     
-### Lessons 
+### Trainings 
 ```
 	  new Schema ({
 			_id: ,
+      owner: Object Id (user), required: true,
 	    name: String, required: true,
       description: String, required: true,
       length: Number,
       notes: Number,
+      games: Array {object id: games}
     })
 ```
     
