@@ -28,7 +28,7 @@ export default class TrainingsList extends React.Component {
         {
           this.state.trainings.map((training, i) => {
             return(
-            <Card>
+            <Card key={"training"+i}>
               <Card.Header as="h5">{training.name}</Card.Header>
               <Card.Body>
                 <Card.Text>

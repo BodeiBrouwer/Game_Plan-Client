@@ -5,7 +5,7 @@ export default function TrainingCreate(props) {
     return (
       <div>
       <h1>Create a new training</h1>
-      <form onSubmit={props.onSubmit}>
+      <form onSubmit={props.onTrainingSubmit}>
         <div>
           <p>What is the name of the training?*</p>
           <input name="name" type="text" placeholder="Training name"></input>

@@ -13,6 +13,7 @@ export default class TrainingDetails extends React.Component {
 
     return (
       <div>
+      <h1> Bodei</h1>
         <h1>{name}</h1>
         <p>{duration}</p>
         <p>{description}</p>

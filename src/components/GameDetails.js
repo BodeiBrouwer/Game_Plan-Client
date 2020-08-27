@@ -9,16 +9,17 @@ export default class GameDetails extends React.Component {
     }
 
   render() {
-    const {name, category, description, purpose, credit, video, _id} = this.state.training
+    const {name, category, description, purpose, credit, video, _id} = this.state.game
 
     return (
       <div>
+      <h1>WRONG ONE</h1>
         <h1>{name}</h1>
         <p>{category}</p>
         <p>{description}</p>
         <p>{purpose}</p>
         <p>{credit}</p>
-        <iframe width="560" height="315" src={video} frameborder="0" allow="encrypted-media" allowfullscreen title={name}></iframe>
+        <iframe width="560" height="315" src={video} frameBorder="0" allow="encrypted-media" allowFullScreen title={name}></iframe>
 
       
        <Link to={`/games/${_id}/edit`}>

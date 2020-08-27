@@ -2,30 +2,24 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {Card, Button} from 'react-bootstrap'
 import SearchGames from './SearchGames'
+import {API_URL} from '../config'
+import axios from 'axios'
 
 export default class GamesList extends React.Component {
 
   state = {
-    games: [
-      {
-      category: 'Scenes',
-      creator: 'Bodei',
-      name: 'Morning gibberish',
-      description: 'Practice gibberish by explaining your morning routine in gibberish...',
-      purpose: 'Better physicality and gibberish',
-      tags: ['Gibberish', 'Solo', 'Monologue']
-      },
-      {
-      category: 'Exercises',
-      creator: 'Jelle',
-      name: 'Diamond dance',
-      description: 'Follow the leader and dance in sync',
-      purpose: 'Bluff',
-      tags: ['Bluff', 'Teamwork', 'Physicality']
-      }
-    ]
-    }
-  
+    games: []
+  }
+    
+   componentDidMount() {
+      axios.get(`${API_URL}/games`)
+      .then((res) => {
+          this.setState({
+    
+            games: res.data
+          })
+      })
+  }
 
 
   render() {
@@ -35,17 +29,17 @@ export default class GamesList extends React.Component {
         {
           this.state.games.map((game, i) => {
             return(
-            <Card>
+            <Card key={"game"+i}>
               <Card.Header as="h5">{game.category}</Card.Header>
               <Card.Body>
                 <Card.Title>{game.name}</Card.Title>
                 <Card.Text>
                   {game.description}
                 </Card.Text>
-                <Link key={i} to={`/games/${game._id}`}>
+                <Link to={`/games/${game._id}`}>
                   <Button variant="primary">More</Button>
                 </Link>
-                <Link key={i} to={`/games/add`}>
+                <Link to={`/games/add`}>
                   <Button variant="primary">Add to training</Button>
                 </Link>
               </Card.Body>
@@ -53,6 +47,9 @@ export default class GamesList extends React.Component {
             )
           })
         }
+        <Link to={`/games/create`}>
+          <Button variant="primary">Create your own game</Button>
+        </Link>
       </div>
     )
   }
