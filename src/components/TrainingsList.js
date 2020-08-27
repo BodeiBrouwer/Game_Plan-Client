@@ -1,25 +1,24 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Card, Button} from 'react-bootstrap'
+import {API_URL} from '../config'
+import axios from 'axios'
 
 export default class TrainingsList extends React.Component {
 
   state = {
-    trainings: [
-      {
-      name: 'Stuurlui',
-      description: 'Finding the game',
-      duration: 120,
-      notes: 'It went very well'
-      },
-      {
-      name: 'Ha-BB',
-      description: 'Two person scenes',
-      duration: 90,
-      notes: 'We got good feedback'
-      }
-    ]
+    trainings: []
     }
+
+    componentDidMount() {
+      axios.get(`${API_URL}/trainings`)
+      .then((res) => {
+          this.setState({
+    
+            trainings: res.data
+          })
+      })
+  }
   
   render() {
     return (
