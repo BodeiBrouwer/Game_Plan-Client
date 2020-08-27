@@ -3,6 +3,8 @@ import React from 'react'
 export default function GameCreate(props) {
 
     return (
+      <div>
+        <h1>Create a new game</h1>
         <form onSubmit={props.onSubmit}>
           <fieldset>
             <p>What type of game is it?*</p>
@@ -41,7 +43,7 @@ export default function GameCreate(props) {
             <p>Do you wanna credit someone for this game?</p>
             <input name="credit" type="text" placeholder="Credit the mastermind"></input>
           </div>
-          
+
           <div>
             <p>Feel free to add a link to a video that shows/explains this game</p>
             <input name="video" type="text" placeholder="Video URL"></input>
@@ -49,5 +51,6 @@ export default function GameCreate(props) {
 
             <button type="submit">Create</button>
         </form>
+      </div>
     )
 }

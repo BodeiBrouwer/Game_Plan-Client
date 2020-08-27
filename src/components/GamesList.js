@@ -45,7 +45,7 @@ export default class GamesList extends React.Component {
                 <Link key={i} to={`/games/${game._id}`}>
                   <Button variant="primary">More</Button>
                 </Link>
-                <Link key={i} to={`/games/${game._id}/add`}>
+                <Link key={i} to={`/games/add`}>
                   <Button variant="primary">Add to training</Button>
                 </Link>
               </Card.Body>
