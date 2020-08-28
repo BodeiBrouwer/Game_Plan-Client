@@ -8,23 +8,25 @@ import axios from 'axios'
 export default class GamesList extends React.Component {
 
   state = {
-    games: []
+    games: [],
   }
     
    componentDidMount() {
-      axios.get(`${API_URL}/games`)
-      .then((res) => {
-          this.setState({
-    
-            games: res.data
+        axios.get(`${API_URL}/games`, {withCredentials: true})
+          .then((games) => {
+              this.setState({
+                games: games.data,
+              })
           })
-      })
   }
 
 
   render() {
     return (
       <div>
+      {
+        !this.props.loggedInUser ? <p>Sign in <Link to="/login">here</Link></p> : 
+        <div>
         <SearchGames/>
         {
           this.state.games.map((game, i) => {
@@ -51,6 +53,8 @@ export default class GamesList extends React.Component {
           <Button variant="primary">Create your own game</Button>
         </Link>
       </div>
+      }
+    </div>
     )
   }
 }

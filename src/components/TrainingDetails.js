@@ -1,11 +1,23 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
+import axios from 'axios'
+import {API_URL} from '../config'
 
 export default class TrainingDetails extends React.Component {
 
   state = {
-    training: []
+    training: [],
+    }
+
+  componentDidMount() {
+    let id = this.props.match.params.id
+        axios.get(`${API_URL}/trainings/${id}`, {withCredentials: true})
+            .then((training) => {
+                this.setState({
+                  training: training.data,
+                })
+            })
     }
   
   render() {
@@ -13,7 +25,10 @@ export default class TrainingDetails extends React.Component {
 
     return (
       <div>
-      <h1> Bodei</h1>
+      {
+        !this.props.loggedInUser ? <p>Sign in <Link to="/login">here</Link></p> : 
+        <div>
+          <h1> These are the details!</h1>
         <h1>{name}</h1>
         <p>{duration}</p>
         <p>{description}</p>
@@ -26,6 +41,8 @@ export default class TrainingDetails extends React.Component {
           <Button variant="primary">Delete</Button>
         </Link>
       </div>
+    }
+    </div>
     )
   }
 }

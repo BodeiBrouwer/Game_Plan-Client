@@ -7,22 +7,24 @@ import axios from 'axios'
 export default class TrainingsList extends React.Component {
 
   state = {
-    trainings: []
+    trainings: [],
     }
 
-    componentDidMount() {
-      axios.get(`${API_URL}/trainings`)
-      .then((res) => {
-          this.setState({
-    
-            trainings: res.data
-          })
-      })
+  componentDidMount() {
+    axios.get(`${API_URL}/trainings`, {withCredentials: true})
+      .then((trainings) => {
+        this.setState({
+          trainings: trainings.data,
+        })
+      }) 
   }
   
   render() {
     return (
       <div>
+      {
+        !this.props.loggedInUser ? <p>Sign in <Link to="/login">here</Link></p> : 
+      <div> 
       <h1> My trainings</h1>
         {
           this.state.trainings.map((training, i) => {
@@ -48,6 +50,8 @@ export default class TrainingsList extends React.Component {
           <Button variant="primary">New training</Button>
         </Link>
       </div>
+      }
+    </div>
     )
   }
 }

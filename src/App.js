@@ -21,22 +21,29 @@ class App extends React.Component {
 
   state = {
     games: [],
+    trainings: [],
     loggedInUser: null
   }
     
    componentDidMount() {
-      axios.get(`${API_URL}/games`)
+      axios.get(`${API_URL}/games`, {withCredentials: true})
       .then((res) => {
           this.setState({
     
             games: res.data
           })
       })
+      axios.get(`${API_URL}/trainings`, {withCredentials: true})
+      .then((response) => {
+          this.setState({
+            trainings: response.data
+          })
+      })
       if (!this.state.loggedInUser){
         axios.get(`${API_URL}/user`, {withCredentials: true})
-        .then((res) => {
+        .then((result) => {
             this.setState({
-              loggedInUser: res.data
+              loggedInUser: result.data
             })
         })
       }  
@@ -78,7 +85,7 @@ class App extends React.Component {
   }
 
   handleLogOut = (e) => {
-    axios.post(`${API_URL}/logout`, {}, {withCredentials: true})
+    axios.get(`${API_URL}/logout`, {withCredentials: true})
       .then(() => {
         this.setState({
           loggedInUser: null
@@ -88,21 +95,22 @@ class App extends React.Component {
       })
   }
 
-  handleGameSubmit = (e) => {
+  handleGameSubmit = (e, game) => {
     e.preventDefault()
-    const {category, name, description, purpose, credit, video} = e.currentTarget
+    const {category, name, description, purpose, credit, video} = game
   
-    axios.post(`${API_URL}/create`, {
-      category: category.value,
-      name: name.value,
-      description: description.value, 
-      purpose: purpose.value,
-      credit: credit.value,
-      video: video.value
+    axios.post(`${API_URL}/games/create`, {
+      category: category,
+      name: name,
+      description: description, 
+      purpose: purpose,
+      credit: credit,
+      video: video
       })
         .then((res) => {
           //redirect
           let newGame = res.data
+          console.log(res.data)
           let cloneGames = JSON.parse(JSON.stringify(this.state.games))
           cloneGames.unshift(newGame)
           this.setState({
@@ -114,6 +122,31 @@ class App extends React.Component {
         })
   }
   
+  handleTrainingSubmit = (e, training) => {
+    e.preventDefault()
+    const {name, description, duration, notes} = training
+  
+    axios.post(`${API_URL}/trainings/create`, {
+      name: name,
+      description: description, 
+      duration: duration,
+      notes: notes,
+      })
+        .then((res) => {
+          //redirect
+          let newTraining = res.data
+          let cloneTrainings = JSON.parse(JSON.stringify(this.state.trainings))
+          cloneTrainings.unshift(newTraining)
+          this.setState({
+            trainings: cloneTrainings
+          }, () => {
+            this.props.history.push('/trainings')
+          })
+          
+        })
+  }
+    
+    
 
 
   render(){
@@ -133,26 +166,26 @@ class App extends React.Component {
           <Route exact path="/games" render={() => {
             return <GamesList loggedInUser={this.state.loggedInUser}/>
           }} />
-          <Route exact path="/games/:id" render={() => {
-            return <GameDetails loggedInUser={this.state.loggedInUser}/>
+           <Route exact path="/games/create" render={(routeProps) => {
+            return <GameCreate loggedInUser={this.state.loggedInUser} onSubmit={this.handleGameSubmit} {...routeProps}/>
+          }} />
+          <Route exact path="/games/:id" render={(routeProps) => {
+            return <GameDetails loggedInUser={this.state.loggedInUser} {...routeProps}/>
           }} />
           <Route path="/games/:id/edit" render={() => {
             return <GameEdit loggedInUser={this.state.loggedInUser}/>
           }} />
-          <Route exact path="/games/create" render={(routeProps) => {
-            return <GameCreate loggedInUser={this.state.loggedInUser} onSubmit={this.handleGameSubmit} {...routeProps}/>
-          }} />
           <Route exact path="/trainings" render={() => {
             return <TrainingsList loggedInUser={this.state.loggedInUser}/>
           }} />
-          <Route exact path="/trainings/:id" render={() => {
-            return <TrainingDetails loggedInUser={this.state.loggedInUser}/>
+          <Route path="/trainings/create" render={(routeProps) => {
+            return <TrainingCreate loggedInUser={this.state.loggedInUser} onSubmit={this.handleTrainingSubmit} {...routeProps}/>
+          }} />
+          <Route exact path="/trainings/:id" render={(routeProps) => {
+            return <TrainingDetails loggedInUser={this.state.loggedInUser} {...routeProps}/>
           }} />
           <Route  path="/trainings/:id/edit" render={() => {
             return <TrainingEdit loggedInUser={this.state.loggedInUser}/>
-          }} />
-          <Route path="/trainings/create" render={() => {
-            return <TrainingCreate loggedInUser={this.state.loggedInUser}/>
           }} />
         </Switch>
       </div>
