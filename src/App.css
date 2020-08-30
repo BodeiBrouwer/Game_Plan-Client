@@ -1,3 +1,7 @@
+body > #root > div{
+  height: 100vh;
+}
+
 .App {
   text-align: center;
 }
@@ -5,12 +9,6 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
@@ -37,10 +35,52 @@
   }
 }
 
+.body {
+  font-family: Tahoma, Verdana, Segoe, sans-serif;
+  margin: 0;
+  font-size: 16px;
+}
+
+.btn {
+  width: 150px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.form-group {
+  padding: 0px 0px;
+}
+
+.login-form {
+  margin-top: 10px;
+  color: rgb(40,168,69);
+}
+
+.login-form, .welcome-text{
+  margin-left: 50px;
+}
+
+.login-page {
+  height: 100%;
+  width: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  background: url(../src/images/sunny-pineapple.jpg)no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 .select-search {
   width: 500px;
   position: relative;
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Tahamo', sans-serif;
   font-size: 16px;
   box-sizing: content-box;
 }
@@ -60,4 +100,13 @@
 .select-search--multiple {
   border-radius: 3px;
   overflow: hidden;
+}
+
+.welcome-text {
+  color: rgb(40,168,69);
+  width: 320px;
+  margin-top: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
 }

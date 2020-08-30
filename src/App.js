@@ -151,8 +151,11 @@ class App extends React.Component {
 
   render(){
     return (
-      <div >
+      <div className="body">
+        {
+          !this.state.loggedInUser ? null :
         <NavBar loggedInUser={this.state.loggedInUser} onLogout={this.handleLogOut}/>
+        }
         <Switch>
           <Route exact path="/" render={() => {
             return <LoginPage/>
