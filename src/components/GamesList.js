@@ -1,9 +1,10 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom'
 import {Card, Button} from 'react-bootstrap'
 import SearchGames from './SearchGames'
 import {API_URL} from '../config'
 import axios from 'axios'
+import LikeButton from './LikeButton'
 
 export default class GamesList extends React.Component {
 
@@ -11,15 +12,14 @@ export default class GamesList extends React.Component {
     games: [],
   }
     
-   componentDidMount() {
-        axios.get(`${API_URL}/games`, {withCredentials: true})
-          .then((games) => {
-              this.setState({
-                games: games.data,
-              })
-          })
+  componentDidMount() {
+    axios.get(`${API_URL}/games`, {withCredentials: true})
+      .then((games) => {
+        this.setState({
+          games: games.data,
+        })
+      })
   }
-
 
   render() {
     return (
@@ -38,6 +38,8 @@ export default class GamesList extends React.Component {
                 <Card.Text>
                   {game.description}
                 </Card.Text>
+                <Route exact path="/games" render={(routeProps) => {
+                return <LikeButton {...routeProps}/> }} />
                 <Link to={`/games/${game._id}`}>
                   <Button variant="primary">More</Button>
                 </Link>

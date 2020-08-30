@@ -37,9 +37,7 @@ export default class TrainingDetails extends React.Component {
        <Link to={`/trainings/${_id}/edit`}>
         <Button variant="primary">Edit</Button>
        </Link>
-        <Link to={`/trainings/${_id}/delete`}>
-          <Button variant="primary">Delete</Button>
-        </Link>
+          <Button onClick={() => this.props.onTrainingDelete(_id)} variant="primary">Delete</Button>
       </div>
     }
     </div>

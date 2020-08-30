@@ -14,7 +14,6 @@ export default class GameDetails extends React.Component {
     let id = this.props.match.params.id
         axios.get(`${API_URL}/games/${id}`, {withCredentials: true})
             .then((game) => {
-              console.log(game.data)
                 this.setState({
                   game: game.data,
                 })
@@ -41,9 +40,7 @@ export default class GameDetails extends React.Component {
        <Link to={`/games/${_id}/edit`}>
         <Button variant="primary">Edit</Button>
        </Link>
-        <Link to={`/games/${_id}/delete`}>
-          <Button variant="primary">Delete</Button>
-        </Link>
+          <Button onClick={() => this.props.onGameDelete(_id)}  variant="primary">Delete</Button>
       </div>
       }
     </div>

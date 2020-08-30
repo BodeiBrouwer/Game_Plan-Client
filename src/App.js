@@ -22,7 +22,8 @@ class App extends React.Component {
   state = {
     games: [],
     trainings: [],
-    loggedInUser: null
+    loggedInUser: null,
+    isNavbarHidden: false
   }
     
    componentDidMount() {
@@ -145,20 +146,103 @@ class App extends React.Component {
           
         })
   }
+
+  handleGameDelete = (id) => {
+    axios.delete(`${API_URL}/games/${id}`, {withCredentials: true})
+      .then(() => {
+          
+        let filteredGames = this.state.games.filter((game) => {
+          return game._id !== id
+        })
+
+        this.setState({
+          games: filteredGames
+        }, () => {
+          this.props.history.push('/games')
+        })
+
+      })
+  }
+
+  handleTrainingDelete = (id) => {
+    axios.delete(`${API_URL}/trainings/${id}`, {withCredentials: true})
+      .then(() => {
+          
+        let filteredTrainings = this.state.trainings.filter((training) => {
+          return training._id !== id
+        })
+
+        this.setState({
+          trainings: filteredTrainings
+        }, () => {
+          this.props.history.push('/trainings')
+        })
+
+      })
+  }
+
+  handleGameEdit = (updatedGame) => {
+    axios.patch(`${API_URL}/games/${updatedGame._id}`, {
+      category: updatedGame.category,
+      name: updatedGame.name,
+      description: updatedGame.description, 
+      purpose: updatedGame.purpose,
+      credit: updatedGame.credit,
+      video: updatedGame.video
+    },  {withCredentials: true})
+    .then(() => {
+        //Use a map to always return a new array. ForEach does not
+        // Please note that down. 
+        let cloneGames = this.state.games.map((game) => {
+            if (game._id === updatedGame._id) {
+              game = updatedGame 
+            }
+            return game
+        })
+        this.setState({
+          games: cloneGames
+        }, () => {
+          this.props.history.push('/games')
+        })
+    })
+  }
+
+  handleTrainingEdit = (updatedTraining) => {
+    axios.patch(`${API_URL}/trainings/${updatedTraining._id}`, {
+      name: updatedTraining.name,
+      description: updatedTraining.description, 
+      duration: updatedTraining.duration,
+      notes: updatedTraining.notes,
+    },  {withCredentials: true})
+    .then(() => {
+        //Use a map to always return a new array. ForEach does not
+        // Please note that down. 
+        let cloneTrainings = this.state.trainings.map((training) => {
+            if (training._id === updatedTraining._id) {
+              training = updatedTraining 
+            }
+            return training
+        })
+        this.setState({
+          trainings: cloneTrainings
+        }, () => {
+          this.props.history.push('/trainings')
+        })
+    })
+  }
     
     
-
-
   render(){
+    const { isNavbarHidden } = this.state;
     return (
       <div className="body">
         {
-          !this.state.loggedInUser ? null :
+          !isNavbarHidden && 
         <NavBar loggedInUser={this.state.loggedInUser} onLogout={this.handleLogOut}/>
         }
         <Switch>
-          <Route exact path="/" render={() => {
-            return <LoginPage/>
+          <Route exact path="/" render={(routeProps) => {
+            return <LoginPage {...routeProps}/>
           }} />
           <Route path="/login" render={(routeProps) => {
             return <LoginPage onSignIn={this.handleSignIn} {...routeProps}/>
@@ -166,31 +250,32 @@ class App extends React.Component {
           <Route path="/signup" render={(routeProps) => {
             return <SignupPage onSignUp={this.handleSignUp} {...routeProps}/>
           }} />
-          <Route exact path="/games" render={() => {
-            return <GamesList loggedInUser={this.state.loggedInUser}/>
+          <Route exact path="/games" render={(routeProps) => {
+            return <GamesList loggedInUser={this.state.loggedInUser} {...routeProps}/>
           }} />
            <Route exact path="/games/create" render={(routeProps) => {
             return <GameCreate loggedInUser={this.state.loggedInUser} onSubmit={this.handleGameSubmit} {...routeProps}/>
           }} />
           <Route exact path="/games/:id" render={(routeProps) => {
-            return <GameDetails loggedInUser={this.state.loggedInUser} {...routeProps}/>
+            return <GameDetails loggedInUser={this.state.loggedInUser} onGameDelete={this.handleGameDelete} {...routeProps}/>
           }} />
-          <Route path="/games/:id/edit" render={() => {
-            return <GameEdit loggedInUser={this.state.loggedInUser}/>
+          <Route path="/games/:id/edit" render={(routeProps) => {
+            return <GameEdit onGameEdit={this.handleGameEdit} loggedInUser={this.state.loggedInUser} {...routeProps}/>
           }} />
-          <Route exact path="/trainings" render={() => {
-            return <TrainingsList loggedInUser={this.state.loggedInUser}/>
+          <Route exact path="/trainings" render={(routeProps) => {
+            return <TrainingsList loggedInUser={this.state.loggedInUser} {...routeProps}/>
           }} />
           <Route path="/trainings/create" render={(routeProps) => {
             return <TrainingCreate loggedInUser={this.state.loggedInUser} onSubmit={this.handleTrainingSubmit} {...routeProps}/>
           }} />
           <Route exact path="/trainings/:id" render={(routeProps) => {
-            return <TrainingDetails loggedInUser={this.state.loggedInUser} {...routeProps}/>
+            return <TrainingDetails loggedInUser={this.state.loggedInUser} onTrainingDelete={this.handleTrainingDelete} {...routeProps}/>
           }} />
-          <Route  path="/trainings/:id/edit" render={() => {
-            return <TrainingEdit loggedInUser={this.state.loggedInUser}/>
+          <Route  path="/trainings/:id/edit" render={(routeProps) => {
+            return <TrainingEdit onTrainingEdit={this.handleTrainingEdit} loggedInUser={this.state.loggedInUser} {...routeProps}/>
           }} />
         </Switch>
+        {this.props.children}
       </div>
     );
   }

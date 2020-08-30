@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 export default function NavBar(props) {
     return (
-      <Navbar bg="light" expand="lg">
+      <Navbar id='navigation-bar' bg="light" expand="lg">
         <Nav className="row justify-content-around" activeKey="/home">
           <Nav.Item>
             <Link to="/games">Games</Link>
