@@ -73,18 +73,18 @@ export default class GamesList extends React.Component {
         {
           this.state.filteredGames.map((game, i) => {
             return (
-            <Card key={"game"+i}>
+            <Card className='card' key={"game"+i}>
               <Card.Header as="h5">{game.category.charAt(0).toUpperCase() + game.category.slice(1)}</Card.Header>
               <Card.Body>
                 <Card.Title>{game.name}</Card.Title>
                 <Card.Text>
                   {game.description}
                 </Card.Text>
-                <LikeButton game={game}/>
+                <LikeButton className='like-btn' game={game}/>
                 <Link to={`/games/${game._id}`}>
-                  <Button variant="primary">More</Button>
+                  <Button variant="btn btn-success">More</Button>
                 </Link>
-                <Button onClick={this.togglePopup.bind(this)} variant="primary">Add to training</Button>
+                <Button onClick={this.togglePopup.bind(this)} variant="btn btn-success">Add to training</Button>
                 {
                   this.state.showPopup ?  
                 <Popup show={this.state.showPopup} game={game} closePopup={this.togglePopup.bind(this)} />  
