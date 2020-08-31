@@ -1,24 +1,21 @@
 import React from 'react'
-import {Nav, Navbar} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 
 export default function NavBar(props) {
     return (
-      <Navbar id='navigation-bar' bg="light" expand="lg">
-        <Nav className="row justify-content-around" activeKey="/home">
-          <Nav.Item>
+      <ul id='navigation-bar'>
+          <li>
             <Link to="/games">Games</Link>
-          </Nav.Item>
-          <Nav.Item>
+          </li>
+          <li>
             <Link to="/games/create">Create game</Link>  
-          </Nav.Item>
-          <Nav.Item>
+          </li>
+          <li>
             <Link to="/trainings">My trainings </Link>
-          </Nav.Item>
-          <Nav.Item className="mr-auto">
+          </li>
+          <li className="mr-auto">
             <button onClick={props.onLogout}>Logout</button>
-          </Nav.Item>
-        </Nav>
-      </Navbar>
+          </li>
+        </ul>
     )
 }

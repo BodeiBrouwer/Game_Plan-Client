@@ -6,6 +6,7 @@ export default class  TrainingCreate extends React.Component{
   state = {
     newtraining: {}
   }
+  
   handleChange = (event) => {
     let key = event.currentTarget.name
     let value = event.currentTarget.value

@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
+import ReactPlayer from 'react-player/lazy'
 import axios from 'axios'
 import {API_URL} from '../config'
 
@@ -21,26 +22,29 @@ export default class GameDetails extends React.Component {
   }
 
   render() {
-    const {name, category, description, purpose, credit, video, _id} = this.state.game
+    const {name, category, description, purpose, credit, video, _id, creator} = this.state.game
 
     return (
       <div>
       {
         !this.props.loggedInUser ? <p>Sign in <Link to="/login">here</Link></p> : 
         <div>
-         <h1>These are game details</h1>
         <h1>{name}</h1>
         <p>{category}</p>
         <p>{description}</p>
         <p>{purpose}</p>
         <p>{credit}</p>
-        <iframe width="560" height="315" src={video} frameBorder="0" allow="encrypted-media" allowFullScreen title={name}></iframe>
+        <ReactPlayer url={video}/>
 
-      
-       <Link to={`/games/${_id}/edit`}>
-        <Button variant="primary">Edit</Button>
-       </Link>
-          <Button onClick={() => this.props.onGameDelete(_id)}  variant="primary">Delete</Button>
+      {
+        this.props.loggedInUser._id !== creator ? null : 
+        <>
+        <Link to={`/games/${_id}/edit`}>
+          <Button variant="primary">Edit</Button>
+        </Link>
+        <Button onClick={() => this.props.onGameDelete(_id)}  variant="primary">Delete</Button>
+        </>
+      }
       </div>
       }
     </div>

@@ -73,7 +73,7 @@ body > #root > div{
 
 .like-count > p {
   color: black;
-  font-size: 25px;
+  font-size: 2px;
 }
 
 .login-btns {
@@ -108,7 +108,9 @@ body > #root > div{
 }
 
 #navigation-bar {
-  background-color: red;
+  display: flex;
+  color: rgb(40,168,69);
+  list-style: none;
 }
 
 .select-search {

@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.css'
+import './App.css';
 import {API_URL} from './config'
 import axios from 'axios'
 import NavBar from './components/NavBar'
@@ -30,7 +30,6 @@ class App extends React.Component {
       axios.get(`${API_URL}/games`, {withCredentials: true})
       .then((res) => {
           this.setState({
-    
             games: res.data
           })
       })
@@ -107,7 +106,7 @@ class App extends React.Component {
       purpose: purpose,
       credit: credit,
       video: video
-      })
+      }, {withCredentials: true})
         .then((res) => {
           //redirect
           let newGame = res.data
@@ -132,7 +131,7 @@ class App extends React.Component {
       description: description, 
       duration: duration,
       notes: notes,
-      })
+      }, {withCredentials: true})
         .then((res) => {
           //redirect
           let newTraining = res.data

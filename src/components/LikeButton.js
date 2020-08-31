@@ -10,31 +10,36 @@ export default class LikeButton extends Component {
   }
 
   componentDidMount() {
-    let id = this.props.match.params.id
-      axios.get(`${API_URL}/games/${id}/like`, {withCredentials: true})
-        .then((game) => {
-          console.log(game.data)
-          this.setState({
-            game: game.data,
-          })
-        })
+    // axios.get(`${API_URL}/games/${id}`, {withCredentials: true})
+    //   .then((res) => {
+    //     this.setState({
+    //       game: res.data
+    //     })
+    //   })
+    this.setState({
+      game: this.props.game
+    })
   }
 
-  incrementMe = (e) => {
-    let updatedGame = JSON.parse(JSON.stringify(this.state.game))
-    updatedGame.likes = e.currentTarget.value
-    console.log(updatedGame.likes)
-    this.setState({
-        game: updatedGame
+  incrementMe = () => {
+    axios.patch(`${API_URL}/games/${this.state.game._id}/like`, {}, {withCredentials: true})
+    .then((game) => {
+      this.setState({
+        game: game.data,
+      })
     })
   }
 
   render() {
+    if (!this.state.game) {
+      return <p>Loading .. </p>
+    }
     return(
       <>
+      <p>{this.state.game.likes.length}</p>
         <button className='like-count' onClick={this.incrementMe}>
           <img className='like-btn' src={require('../images/pineapple.png')} alt='pineapple'/>
-          <p>{this.state.likes}</p>
+          <p>{this.state.game.likes.length}</p>
         </button>
       </>
     )
