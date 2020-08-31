@@ -5,6 +5,7 @@ import {API_URL} from '../config'
 import axios from 'axios'
 import LikeButton from './LikeButton'
 import Select from 'react-select'
+import Popup from './Popup'
 
 const options = [
   {label: 'Warm-ups', value: 'warm-up'},
@@ -17,7 +18,8 @@ export default class GamesList extends React.Component {
   state = {
     games: [],
     selectedOption: null,
-    filteredGames: []
+    filteredGames: [],
+    showPopup: false
   }
     
   componentDidMount() {
@@ -50,6 +52,12 @@ export default class GamesList extends React.Component {
     })
   };
 
+  togglePopup() {  
+    this.setState({  
+         showPopup: !this.state.showPopup  
+    });  
+  }  
+
   render() {
     const { selectedOption } = this.state;
     return (
@@ -76,9 +84,12 @@ export default class GamesList extends React.Component {
                 <Link to={`/games/${game._id}`}>
                   <Button variant="primary">More</Button>
                 </Link>
-                <Link to={`/games/add`}>
-                  <Button variant="primary">Add to training</Button>
-                </Link>
+                <Button onClick={this.togglePopup.bind(this)} variant="primary">Add to training</Button>
+                {
+                  this.state.showPopup ?  
+                <Popup show={this.state.showPopup} game={game} closePopup={this.togglePopup.bind(this)} />  
+                : null  
+                }  
               </Card.Body>
             </Card>
             )
@@ -94,5 +105,3 @@ export default class GamesList extends React.Component {
   }
 }
 
-
-// return !this.state.selectedOption.includes(game.category) ? null :
