@@ -229,8 +229,8 @@ class App extends React.Component {
         })
     })
   }
-    
-    
+
+  
   render(){
     const { isNavbarHidden } = this.state;
     return (
