@@ -64,40 +64,46 @@ export default class GamesList extends React.Component {
       <div>
       {
         !this.props.loggedInUser ? <p>Sign in <Link to="/login">here</Link></p> : 
-        <div>
-        <Select
-          isMulti
-          value={selectedOption}
-          onChange={this.handleSearch}
-          options={options}/>
+        <div className='center-piece'>
+        <h1> Search Our Game Database</h1>
+        <section className='search-section'>
+          <Select 
+            className='select'
+            isMulti
+            value={selectedOption}
+            onChange={this.handleSearch}
+            options={options}/>
+          <Link to={`/games/create`}>
+            <Button variant="btn btn-success btn-new-game">Create your own game</Button>
+          </Link>
+        </section>
         {
           this.state.filteredGames.map((game, i) => {
             return (
             <Card className='card' key={"game"+i}>
-              <Card.Header as="h5">{game.category.charAt(0).toUpperCase() + game.category.slice(1)}</Card.Header>
+              <Card.Header className='card-header' as="h5">{game.category.charAt(0).toUpperCase() + game.category.slice(1)}</Card.Header>
               <Card.Body>
                 <Card.Title>{game.name}</Card.Title>
                 <Card.Text>
                   {game.description}
                 </Card.Text>
-                <LikeButton className='like-btn' game={game}/>
-                <Link to={`/games/${game._id}`}>
-                  <Button variant="btn btn-success">More</Button>
-                </Link>
-                <Button onClick={this.togglePopup.bind(this)} variant="btn btn-success">Add to training</Button>
-                {
-                  this.state.showPopup ?  
-                <Popup show={this.state.showPopup} game={game} closePopup={this.togglePopup.bind(this)} />  
-                : null  
-                }  
+                <div className='btn-collection-card'>
+                  <Link to={`/games/${game._id}`}>
+                    <Button variant="btn btn-success">More</Button>
+                  </Link>
+                  <Button onClick={this.togglePopup.bind(this)} variant="btn btn-success">Add to training</Button>
+                  {
+                    this.state.showPopup ?  
+                  <Popup show={this.state.showPopup} game={game} closePopup={this.togglePopup.bind(this)} />  
+                  : null  
+                  }  
+                  <LikeButton className='like-btn' game={game}/>
+                </div>
               </Card.Body>
             </Card>
             )
           })
         }
-        <Link to={`/games/create`}>
-          <Button variant="primary">Create your own game</Button>
-        </Link>
       </div>
       }
     </div>

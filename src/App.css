@@ -1,44 +1,18 @@
+html, body {
+  height: 100%;
+}
+
 body > #root > div{
   height: 100vh;
 }
 
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .body {
-  font-family: Tahoma, Verdana, Segoe, sans-serif;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 300;
   margin: 0;
   font-size: 16px;
+  background-color: rgb(241, 241, 155);
+  height: 3000px;
 }
 
 .btn {
@@ -46,10 +20,35 @@ body > #root > div{
   margin: 0px 5px;
 }
 
+.btn-new-game{
+  width: auto;
+  margin-left: 10px;
+  align-self: center;
+}
+
+.btn-collection-card{
+  display: flex;
+  justify-items: center;
+  flex-direction: row;
+}
+
 .card {
-  width: 80%;
+  width: 60%;
   align-self: center;
   margin: 20px 0px;
+  border: none;
+}
+
+.card-header{
+  background-color: rgb(18, 73, 16);
+  color: rgb(248,247,36);
+}
+
+.center-piece {
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .edit-form {
@@ -66,6 +65,19 @@ body > #root > div{
 
 .form-group {
   padding: 0px 0px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+ }
+
+ h1 {
+   margin-top: 25px;
+ }
+
+.header-image {
+  width: 100%;
+  height: auto;
 }
 
 .like-btn {
@@ -119,6 +131,14 @@ body > #root > div{
   color: rgb(40,168,69);
 }
 
+.logout-btn:focus,
+.logout-btn:active{
+	border: none;
+	background:none;
+	outline:none;
+	padding:0;
+}
+
 .logout-btn:hover{
   color: rgb(248,247,36);
 }
@@ -140,6 +160,7 @@ body > #root > div{
 }
 
 .navbar--link {
+  font-weight: 500;
   display: flex;
   list-style: none;
 }
@@ -178,29 +199,14 @@ body > #root > div{
   background: white;  
 }
 
-.select-search {
-  width: 500px;
-  position: relative;
-  font-family: 'Tahamo', sans-serif;
-  font-size: 16px;
-  box-sizing: content-box;
+.search-section{
+  margin-top: 30px;
+  display: flex;
+  width: 50%;
 }
 
-.select-search *,
-.select-search *::after,
-.select-search *::before {
-  box-sizing: inherit;
-}
-
-.select-search__option.is-highlighted.is-selected,
-.select-search__option.is-selected:hover {
-    background: #2eb378;
-    color: #fff;
-}
-
-.select-search--multiple {
-  border-radius: 3px;
-  overflow: hidden;
+.select{
+ width: 50%;
 }
 
 .welcome-text {

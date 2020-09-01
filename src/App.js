@@ -23,7 +23,6 @@ class App extends React.Component {
     games: [],
     trainings: [],
     loggedInUser: null,
-    isNavbarHidden: false
   }
     
    componentDidMount() {
@@ -232,12 +231,15 @@ class App extends React.Component {
 
   
   render(){
-    const { isNavbarHidden } = this.state;
+    console.log(this.props.location.pathname)
     return (
       <div className="body">
         {
-          !isNavbarHidden && 
-        <NavBar loggedInUser={this.state.loggedInUser} onLogout={this.handleLogOut}/>
+          this.props.location.pathname !== '/signup' && this.props.location.pathname !== '/login' && this.props.location.pathname !== '/' ? (
+        <>
+          <NavBar loggedInUser={this.state.loggedInUser} onLogout={this.handleLogOut}/>
+          <img className='header-image' src={require("./images/header-image.jpg")} alt='row of pineapples'/>
+        </>) : null
         }
         <Switch>
           <Route exact path="/" render={(routeProps) => {

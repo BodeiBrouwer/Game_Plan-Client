@@ -24,31 +24,31 @@ export default class TrainingsList extends React.Component {
       <div>
       {
         !this.props.loggedInUser ? <p>Sign in <Link to="/login">here</Link></p> : 
-      <div> 
-      <h1> My trainings</h1>
-        {
-          this.state.trainings.map((training, i) => {
-            return(
-            <Card key={"training"+i}>
-              <Card.Header as="h5">{training.name}</Card.Header>
-              <Card.Body>
-                <Card.Text>
-                  {training.description}
-                </Card.Text>
-                <Card.Text className="duration">
-                  {training.duration} minutes
-                </Card.Text>
-                <Link to={`/trainings/${training._id}`}>
-                  <Button variant="primary">More</Button>
-                </Link>
-              </Card.Body>
-            </Card>
-            )
-          })
-        }
+      <div className='center-piece'> 
+        <h1> My trainings</h1>
         <Link to={`/trainings/create`}>
-          <Button variant="primary">New training</Button>
+          <Button variant="btn btn-success">New training</Button>
         </Link>
+          {
+            this.state.trainings.map((training, i) => {
+              return(
+              <Card key={"training"+i}>
+                <Card.Header as="h5">{training.name}</Card.Header>
+                <Card.Body>
+                  <Card.Text>
+                    {training.description}
+                  </Card.Text>
+                  <Card.Text className="duration">
+                    {training.duration} minutes
+                  </Card.Text>
+                  <Link to={`/trainings/${training._id}`}>
+                    <Button variant="btn btn-success">More</Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+              )
+            })
+          }
       </div>
       }
     </div>

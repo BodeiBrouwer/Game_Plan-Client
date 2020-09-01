@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {Button} from 'react-bootstrap'
+import {Button, Card} from 'react-bootstrap'
 import axios from 'axios'
 import {API_URL} from '../config'
 
@@ -14,6 +14,7 @@ export default class TrainingDetails extends React.Component {
     let id = this.props.match.params.id
         axios.get(`${API_URL}/trainings/${id}`, {withCredentials: true})
             .then((training) => {
+              console.log(training.data)
                 this.setState({
                   training: training.data,
                 })
@@ -35,9 +36,7 @@ export default class TrainingDetails extends React.Component {
         <h4>Notes</h4>
         <p>{notes}</p>
         <h4>Games</h4>
-        <p>{games}</p>
-
-        {/* {
+        {
           games.map((game, i) => {
             return (
             <Card key={"mygame"+i}>
@@ -54,7 +53,7 @@ export default class TrainingDetails extends React.Component {
             </Card>
             )
           })
-        } */}
+        }
 
       
        <Link to={`/trainings/${_id}/edit`}>
