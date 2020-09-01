@@ -231,7 +231,6 @@ class App extends React.Component {
 
   
   render(){
-    console.log(this.props.location.pathname)
     return (
       <div className="body">
         {

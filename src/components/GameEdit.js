@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import {API_URL} from '../config'
+import {Button} from 'react-bootstrap'
 
 
 export default class GameEdit extends Component {
@@ -75,40 +76,58 @@ export default class GameEdit extends Component {
     render() {
         const {name, description, purpose, credit, video} = this.state.game
         return (
-            <div className='edit-form'>
-            <p>What type of game is it?</p>
-            <div>
-              <input onChange={this.handleCatChange} checked={this.state.game.category === "warm-up" ? true : false} type="checkbox" name="category" value="warm-up"></input>
-              <label htmlFor="warm-up">Warm-up</label>
-            </div>
+          <div className='form-page'>
+            <form>
+            <h1>Game changer</h1>
+              <fieldset>
+                <div>
+                <p>What type of game is it?</p>
+                  <input onChange={this.handleCatChange} checked={this.state.game.category === "warm-up" ? true : false} type="checkbox" name="category" value="warm-up"></input>
+                  <label htmlFor="warm-up">Warm-up</label>
+                </div>
 
-            <div>
-              <input onChange={this.handleCatChange} checked={this.state.game.category === "exercise" ? true : false} type="checkbox" name="category" value="exercise"></input>
-              <label htmlFor="exercise">Exercise</label>
-            </div>
+                <div>
+                  <input onChange={this.handleCatChange} checked={this.state.game.category === "exercise" ? true : false} type="checkbox" name="category" value="exercise"></input>
+                  <label htmlFor="exercise">Exercise</label>
+                </div>
 
-            <div>
-              <input onChange={this.handleCatChange} checked={this.state.game.category === "scenes" ? true : false} type="checkbox" name="category" value="scenes"></input>
-              <label htmlFor="scenes">Scenes</label>
-            </div>
+                <div>
+                  <input onChange={this.handleCatChange} checked={this.state.game.category === "scenes" ? true : false} type="checkbox" name="category" value="scenes"></input>
+                  <label htmlFor="scenes">Scenes</label>
+                </div>
+              </fieldset>
 
-            <p>We do need a name</p>
-            <input onChange={this.handleNameChange} name="name" type="text" placeholder="Enter Name" value={name}></input>
+              <div className='form-field'>
+                <p>We do need a name</p>
+                <input onChange={this.handleNameChange} name="name" type="text" placeholder="Enter Name" value={name}></input>
+              </div>
 
-            <p>Give a clear description</p>
-            <input onChange={this.handleDescChange} name="description" type="text" value={description} placeholder="Enter Description"></input>
+              <div className='form-field'>
+                <p>Give a clear description</p>
+                <input onChange={this.handleDescChange} name="description" type="text" value={description} placeholder="Enter Description"></input>
+              </div>
 
-            <p>But what can we learn from it?</p>
-            <input onChange={this.handlePurposeChange} name="name" type="text" placeholder="Enter purpose" value={purpose}></input>
+              <div className='form-field'>
+                <p>But what can we learn from it?</p>
+                <input onChange={this.handlePurposeChange} name="name" type="text" placeholder="Enter purpose" value={purpose}></input>
+              </div>
 
-            <p>Anyone to credit?</p>
-            <input onChange={this.handleCreditChange} name="name" type="text" placeholder="Enter credit" value={credit}></input>
+              <div className='form-field'>
+                <p>Anyone to credit?</p>
+                <input onChange={this.handleCreditChange} name="name" type="text" placeholder="Enter credit" value={credit}></input>
+              </div>
 
-            <p>Wanna change the video?</p>
-            <input onChange={this.handleVideoChange} name="name" type="text" placeholder="Enter video url" value={video}></input>
+              <div className='form-field'>
+                <p>Wanna change the video?</p>
+                <input onChange={this.handleVideoChange} name="name" type="text" placeholder="Enter video url" value={video}></input>
+              </div>
 
-            <button onClick={() => this.props.onGameEdit(this.state.game)} type="submit">Edit</button>
+              <Button onClick={() => this.props.onGameEdit(this.state.game)} variant="btn btn-success btn-create" type="submit">Edit</Button>
+          </form>
+          <div className='form-image'>
+            <img  src={require("../images/festive-pineapple.png")} alt='festive pineapple'/>
           </div>
+        </div>
         )
     }
 }

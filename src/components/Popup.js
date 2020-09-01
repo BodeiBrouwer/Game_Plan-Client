@@ -59,7 +59,7 @@ export default class Popup extends React.Component {
       </fieldset>
         
         <Link to={`/games`}>
-          <Button onClick={() => {this.handleAdd(); this.props.closePopup();}} variant="primary">Add</Button>
+          <Button onClick={() => {this.handleAdd(); this.props.closePopup();}} variant="btn btn-success">Add</Button>
         </Link>
       </div>
       }

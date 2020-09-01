@@ -14,7 +14,6 @@ export default class TrainingDetails extends React.Component {
     let id = this.props.match.params.id
         axios.get(`${API_URL}/trainings/${id}`, {withCredentials: true})
             .then((training) => {
-              console.log(training.data)
                 this.setState({
                   training: training.data,
                 })
@@ -28,9 +27,15 @@ export default class TrainingDetails extends React.Component {
       <div>
       {
         !this.props.loggedInUser ? <p>Sign in <Link to="/login">here</Link></p> : 
-        <div>
+        <div className='center-piece details'>
         <h1>{name}</h1>
-        <p>Duration: {duration}</p>
+        <div className='btn-collection-card'>
+          <Link to={`/trainings/${_id}/edit`}>
+            <Button variant="btn btn-success">Edit</Button>
+          </Link>
+          <Button onClick={() => this.props.onTrainingDelete(_id)} variant="btn btn-success">Delete</Button>
+        </div>
+        <h4>{duration} min</h4>
         <h4>Description</h4>
         <p>{description}</p>
         <h4>Notes</h4>
@@ -40,26 +45,19 @@ export default class TrainingDetails extends React.Component {
           games.map((game, i) => {
             return (
             <Card key={"mygame"+i}>
-              <Card.Header as="h5">{game.category.charAt(0).toUpperCase() + game.category.slice(1)}</Card.Header>
+              <Card.Header className='card-header'><span className='card-title'><h5>{game.name}</h5> <h5>{game.category.charAt(0).toUpperCase() + game.category.slice(1)}</h5></span></Card.Header>
               <Card.Body>
-                <Card.Title>{game.name}</Card.Title>
-                <Card.Text>
+                <Card.Text className='card-game-descr overflow'>
                   {game.description}
                 </Card.Text>
                 <Link to={`/games/${game._id}`}>
-                  <Button variant="primary">More</Button>
+                  <Button variant="btn btn-success">More</Button>
                 </Link>
               </Card.Body>
             </Card>
             )
           })
         }
-
-      
-       <Link to={`/trainings/${_id}/edit`}>
-        <Button variant="primary">Edit</Button>
-       </Link>
-          <Button onClick={() => this.props.onTrainingDelete(_id)} variant="primary">Delete</Button>
       </div>
     }
     </div>

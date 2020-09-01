@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {Button} from 'react-bootstrap'
 
 export default class GameCreate extends React.Component {
   state = {
@@ -21,13 +22,15 @@ export default class GameCreate extends React.Component {
 
   render(){
     return (
-      <div>
+      <div className='form-page'>
       {
         !this.props.loggedInUser ? <p>Sign in <Link to="/login">here</Link></p> : 
         <div>
-        <h1>Create a new game</h1>
+        
         <form onSubmit={(e)=> this.props.onSubmit(e, this.state.newgame)}>
+        <h1>Create a new game</h1>
           <fieldset>
+
             <p>What type of game is it?*</p>
             <div>
               <input onChange={this.handleChange} checked={this.state.newgame.category === "warm-up" ? true : false} type="checkbox" name="category" value="warm-up"></input>
@@ -45,33 +48,38 @@ export default class GameCreate extends React.Component {
             </div>
           </fieldset>
 
-          <div>
+          <div className='form-field'>
             <p>What is the name of the game?*</p>
             <input onChange={this.handleChange} name="name" type="text" placeholder="Name of the game"></input>
           </div>
 
-          <div>
+          <div className='form-field'>
             <p>Give a description of the game*</p>
             <input onChange={this.handleChange} name="description" type="text" placeholder="Describe the game"></input>
           </div>
 
-          <div>
+          <div className='form-field'>
             <p>What are the benefits of this game?</p>
             <input onChange={this.handleChange} name="purpose" type="text" placeholder="Enter purpose"></input>
           </div>
 
-          <div>
+          <div className='form-field'>
             <p>Do you wanna credit someone for this game?</p>
             <input onChange={this.handleChange} name="credit" type="text" placeholder="Credit the mastermind"></input>
           </div>
 
-          <div>
+          <div className='form-field'>
             <p>Feel free to add a link to a video that shows/explains this game</p>
             <input onChange={this.handleChange} name="video" type="text" placeholder="Video URL"></input>
           </div>
 
-            <button type="submit">Create</button>
+            <Button variant="btn btn-success btn-create" type="submit">Create</Button>
         </form>
+
+        <div className='form-image'>
+          <img  src={require("../images/festive-pineapple.png")} alt='festive pineapple'/>
+        </div>
+
       </div>
     }
     </div>

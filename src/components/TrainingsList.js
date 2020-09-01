@@ -33,13 +33,13 @@ export default class TrainingsList extends React.Component {
             this.state.trainings.map((training, i) => {
               return(
               <Card key={"training"+i}>
-                <Card.Header as="h5">{training.name}</Card.Header>
+                <Card.Header className='card-header' as="h5">{training.name}</Card.Header>
                 <Card.Body>
                   <Card.Text>
                     {training.description}
                   </Card.Text>
                   <Card.Text className="duration">
-                    {training.duration} minutes
+                    <b>Duration:</b>   {training.duration} minutes
                   </Card.Text>
                   <Link to={`/trainings/${training._id}`}>
                     <Button variant="btn btn-success">More</Button>

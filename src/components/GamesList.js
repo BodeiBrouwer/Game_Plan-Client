@@ -81,10 +81,9 @@ export default class GamesList extends React.Component {
           this.state.filteredGames.map((game, i) => {
             return (
             <Card className='card' key={"game"+i}>
-              <Card.Header className='card-header' as="h5">{game.category.charAt(0).toUpperCase() + game.category.slice(1)}</Card.Header>
+              <Card.Header className='card-header'><span className='card-title'><h5>{game.name}</h5> <h5>{game.category.charAt(0).toUpperCase() + game.category.slice(1)}</h5></span></Card.Header>
               <Card.Body>
-                <Card.Title>{game.name}</Card.Title>
-                <Card.Text>
+                <Card.Text className='card-game-descr overflow'>
                   {game.description}
                 </Card.Text>
                 <div className='btn-collection-card'>

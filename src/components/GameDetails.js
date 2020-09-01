@@ -40,9 +40,9 @@ export default class GameDetails extends React.Component {
         this.props.loggedInUser._id !== creator ? null : 
         <>
         <Link to={`/games/${_id}/edit`}>
-          <Button variant="primary">Edit</Button>
+          <Button variant="btn btn-success">Edit</Button>
         </Link>
-        <Button onClick={() => this.props.onGameDelete(_id)}  variant="primary">Delete</Button>
+        <Button onClick={() => this.props.onGameDelete(_id)}  variant="btn btn-success">Delete</Button>
         </>
       }
       </div>
