@@ -86,16 +86,18 @@ export default class GamesList extends React.Component {
                 <Card.Text className='card-game-descr overflow'>
                   {game.description}
                 </Card.Text>
-                <div className='btn-collection-card'>
-                  <Link to={`/games/${game._id}`}>
-                    <Button variant="btn btn-success">More</Button>
-                  </Link>
-                  <Button onClick={this.togglePopup.bind(this)} variant="btn btn-success">Add to training</Button>
-                  {
-                    this.state.showPopup ?  
-                  <Popup show={this.state.showPopup} game={game} closePopup={this.togglePopup.bind(this)} />  
-                  : null  
-                  }  
+                <div className='btn-with-like'>
+                  <div className='btn-collection-card'>
+                    <Link to={`/games/${game._id}`}>
+                      <Button variant="btn btn-success">More</Button>
+                    </Link>
+                    <Button className='btn-add' onClick={this.togglePopup.bind(this)} variant="btn btn-success">Add to training</Button>
+                    {
+                      this.state.showPopup ?  
+                    <Popup show={this.state.showPopup} game={game} closePopup={this.togglePopup.bind(this)} />  
+                    : null  
+                    }  
+                  </div>
                   <LikeButton className='like-btn' game={game}/>
                 </div>
               </Card.Body>
