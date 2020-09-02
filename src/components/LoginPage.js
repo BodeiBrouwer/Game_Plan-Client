@@ -4,13 +4,6 @@ import {Button} from 'react-bootstrap'
 
 export default class LoginPage  extends React.Component {
 
-  componentDidMount () {
-    const currentRoute = this.props.location;
-    if (currentRoute === 'LoginPage') {
-    this.props.setState({ isNavbarHidden: true });
-    }
-  }
-
   render () {
     return (
       <div className="login-page">

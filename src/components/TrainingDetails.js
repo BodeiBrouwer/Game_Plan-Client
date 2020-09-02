@@ -21,7 +21,8 @@ export default class TrainingDetails extends React.Component {
       })
     }
 
-    handleDelete = (game) => {
+    handleDelete = (e, game) => {
+      e.preventDefault();
       axios.patch(`${API_URL}/games/${this.state.training._id}/${game._id}/delete`, {}, {withCredentials: true})
       .then((game) => {
         this.setState({

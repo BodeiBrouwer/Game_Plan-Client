@@ -21,6 +21,7 @@ export default class TrainingEdit extends Component {
     }
 
     handleNameChange = (e) => {
+      e.preventDefault();
       let updatedTraining = JSON.parse(JSON.stringify(this.state.training))
       updatedTraining.name = e.currentTarget.value //updating name
       this.setState({
@@ -29,6 +30,7 @@ export default class TrainingEdit extends Component {
     }
 
     handleDescChange = (e) => {
+      e.preventDefault();
         let updatedTraining = JSON.parse(JSON.stringify(this.state.training))
         updatedTraining.description = e.currentTarget.value //updating description
         this.setState({
@@ -37,6 +39,7 @@ export default class TrainingEdit extends Component {
     }
 
     handleDurationChange = (e) => {
+      e.preventDefault();
       let updatedTraining = JSON.parse(JSON.stringify(this.state.training))
       updatedTraining.duration = e.currentTarget.value //updating description
       this.setState({
@@ -45,6 +48,7 @@ export default class TrainingEdit extends Component {
     }
 
     handleNotesChange = (e) => {
+      e.preventDefault();
       let updatedTraining = JSON.parse(JSON.stringify(this.state.training))
       updatedTraining.notes = e.currentTarget.value //updating description
       this.setState({
@@ -65,7 +69,7 @@ export default class TrainingEdit extends Component {
 
           <div className='form-field'>
             <p>What's the description?</p>
-            <input onChange={this.handleDescChange} name="description" type="text" value={description} placeholder="Enter Description"></input>
+            <textarea onChange={this.handleDescChange} name="description" type="text" value={description} placeholder="Enter Description"></textarea>
           </div>
 
           <div className='form-field'>
@@ -75,7 +79,7 @@ export default class TrainingEdit extends Component {
 
           <div className='form-field'>
             <p>Add some notes</p>
-            <input onChange={this.handleNotesChange} name="notes" type="text" value={notes} placeholder="Enter notes"></input>
+            <textarea onChange={this.handleNotesChange} name="notes" type="text" value={notes} placeholder="Enter notes"></textarea>
           </div>
 
             <Button onClick={() => this.props.onTrainingEdit(this.state.training)} variant="btn btn-success btn-create"  type="submit">Edit</Button>

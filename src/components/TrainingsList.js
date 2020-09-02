@@ -30,7 +30,6 @@ export default class TrainingsList extends React.Component {
           <Button variant="btn btn-success">New training</Button>
         </Link>
           {
-            this.state.trainings.length === 0 ? null :
             this.state.trainings.map((training, i) => {
               return(
               <Card key={"training"+i}>

@@ -32,7 +32,8 @@ export default class GamesList extends React.Component {
       })
   }
 
-  handleSearch = selectedOption => {
+  handleSearch = (e, selectedOption) => {
+    e.preventDefault();
     this.setState({ selectedOption });
     console.log(`Option selected:`, selectedOption);
 
@@ -50,10 +51,19 @@ export default class GamesList extends React.Component {
     this.setState({
       filteredGames: cloneFilter
     })
-  };
+  }
+
+  sortAscending = () => {
+    let sorted= this.state.filteredGames.sort((a, b) => (a.likes - b.likes))
+      .then(() => {
+        this.setState({
+          filteredGames: sorted
+        })
+      })      
+  }
+
 
   togglePopup = (game) => { 
-    console.log(game)
     this.setState({  
          showPopup: !this.state.showPopup ,
          selectedGame: game 
@@ -66,7 +76,7 @@ export default class GamesList extends React.Component {
       return <p>Loading .. </p>
     }
 
-    return (
+    return (                 
       <div>
       {
         !this.props.loggedInUser ? <p>Sign in <Link to="/login">here</Link></p> : 
@@ -79,12 +89,13 @@ export default class GamesList extends React.Component {
             value={selectedOption}
             onChange={this.handleSearch}
             options={options}/>
-          <Link to={`/games/create`}>
-            <Button variant="btn btn-success btn-new-game">Create your own game</Button>
-          </Link>
+          <Button onClick={this.sortAscending} variant="btn btn-success btn-new-game">Sort by likes</Button>
         </section>
+        <Link to={`/games/create`}>
+          <Button variant="btn btn-success btn-new-game">Create your own game</Button>
+        </Link>
         {
-          this.state.filteredGames.length === 0 ? null :
+          this.state.filteredGames === 0 ? null :
           this.state.filteredGames.map((game, i) => {
             return (
             <Card className='card' key={"game"+i}>
@@ -92,6 +103,10 @@ export default class GamesList extends React.Component {
               <Card.Body>
                 <Card.Text className='card-game-descr overflow'>
                   {game.description}
+                </Card.Text>
+                <Card.Text className='card-game-creator'>
+                Creator:
+                  {User.userName}
                 </Card.Text>
                 <div className='btn-with-like'>
                   <div className='btn-collection-card'>

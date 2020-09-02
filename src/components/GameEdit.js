@@ -22,6 +22,7 @@ export default class GameEdit extends Component {
   }
 
   handleCatChange = (event) => {
+    event.preventDefault();
       let key = event.currentTarget.name
       let value = event.currentTarget.value
       const cloneGame = JSON.parse(JSON.stringify(this.state.game))
@@ -33,6 +34,7 @@ export default class GameEdit extends Component {
   }
 
     handleNameChange = (e) => {
+      e.preventDefault();
         let updatedGame = JSON.parse(JSON.stringify(this.state.game))
         updatedGame.name = e.currentTarget.value //updating name
         this.setState({
@@ -41,6 +43,7 @@ export default class GameEdit extends Component {
     }
 
     handleDescChange = (e) => {
+      e.preventDefault();
         let updatedGame = JSON.parse(JSON.stringify(this.state.game))
         updatedGame.description = e.currentTarget.value //updating description
         this.setState({
@@ -49,6 +52,7 @@ export default class GameEdit extends Component {
     }
 
     handlePurposeChange = (e) => {
+      e.preventDefault();
       let updatedGame = JSON.parse(JSON.stringify(this.state.game))
       updatedGame.purpose = e.currentTarget.value //updating description
       this.setState({
@@ -57,6 +61,7 @@ export default class GameEdit extends Component {
     }
 
     handleCreditChange = (e) => {
+      e.preventDefault();
       let updatedGame = JSON.parse(JSON.stringify(this.state.game))
       updatedGame.credit = e.currentTarget.value //updating description
       this.setState({
@@ -65,6 +70,7 @@ export default class GameEdit extends Component {
     }
 
     handleVideoChange = (e) => {
+      e.preventDefault();
       let updatedGame = JSON.parse(JSON.stringify(this.state.game))
       updatedGame.video = e.currentTarget.value //updating description
       this.setState({
@@ -104,12 +110,12 @@ export default class GameEdit extends Component {
 
               <div className='form-field'>
                 <p>Give a clear description</p>
-                <input onChange={this.handleDescChange} name="description" type="text" value={description} placeholder="Enter Description"></input>
+                <textarea onChange={this.handleDescChange} name="description" type="text" value={description} placeholder="Enter Description"></textarea>
               </div>
 
               <div className='form-field'>
                 <p>But what can we learn from it?</p>
-                <input onChange={this.handlePurposeChange} name="name" type="text" placeholder="Enter purpose" value={purpose}></input>
+                <textarea onChange={this.handlePurposeChange} name="name" type="text" placeholder="Enter purpose" value={purpose}></textarea>
               </div>
 
               <div className='form-field'>

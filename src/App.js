@@ -84,6 +84,7 @@ class App extends React.Component {
   }
 
   handleLogOut = (e) => {
+    e.preventDefault();
     axios.get(`${API_URL}/logout`, {withCredentials: true})
       .then(() => {
         this.setState({
@@ -145,7 +146,8 @@ class App extends React.Component {
         })
   }
 
-  handleGameDelete = (id) => {
+  handleGameDelete = (e, id) => {
+    e.preventDefault();
     axios.delete(`${API_URL}/games/${id}`, {withCredentials: true})
       .then(() => {
           
@@ -162,7 +164,8 @@ class App extends React.Component {
       })
   }
 
-  handleTrainingDelete = (id) => {
+  handleTrainingDelete = (e, id) => {
+    e.preventDefault();
     axios.delete(`${API_URL}/trainings/${id}`, {withCredentials: true})
       .then(() => {
           
@@ -179,7 +182,8 @@ class App extends React.Component {
       })
   }
 
-  handleGameEdit = (updatedGame) => {
+  handleGameEdit = (e, updatedGame) => {
+    e.preventDefault();
     axios.patch(`${API_URL}/games/${updatedGame._id}`, {
       category: updatedGame.category,
       name: updatedGame.name,
@@ -205,7 +209,8 @@ class App extends React.Component {
     })
   }
 
-  handleTrainingEdit = (updatedTraining) => {
+  handleTrainingEdit = (e, updatedTraining) => {
+    e.preventDefault();
     axios.patch(`${API_URL}/trainings/${updatedTraining._id}`, {
       name: updatedTraining.name,
       description: updatedTraining.description, 

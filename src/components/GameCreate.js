@@ -55,12 +55,12 @@ export default class GameCreate extends React.Component {
 
           <div className='form-field'>
             <p>Give a description of the game*</p>
-            <input onChange={this.handleChange} name="description" type="text" placeholder="Describe the game"></input>
+            <textarea onChange={this.handleChange} name="description" type="text" placeholder="Describe the game"></textarea>
           </div>
 
           <div className='form-field'>
             <p>What are the benefits of this game?</p>
-            <input onChange={this.handleChange} name="purpose" type="text" placeholder="Enter purpose"></input>
+            <textarea onChange={this.handleChange} name="purpose" type="text" placeholder="Enter purpose"></textarea>
           </div>
 
           <div className='form-field'>
