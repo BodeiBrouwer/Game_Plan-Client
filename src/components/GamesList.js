@@ -84,7 +84,7 @@ export default class GamesList extends React.Component {
           </Link>
         </section>
         {
-          !this.state.filteredGames ? null :
+          this.state.filteredGames.length === 0 ? null :
           this.state.filteredGames.map((game, i) => {
             return (
             <Card className='card' key={"game"+i}>
