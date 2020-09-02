@@ -52,14 +52,20 @@ export default class GamesList extends React.Component {
     })
   };
 
-  togglePopup() {  
+  togglePopup = (game) => { 
+    console.log(game)
     this.setState({  
-         showPopup: !this.state.showPopup  
+         showPopup: !this.state.showPopup ,
+         selectedGame: game 
     });  
   }  
 
   render() {
     const { selectedOption } = this.state;
+    if (!this.state.filteredGames) {
+      return <p>Loading .. </p>
+    }
+
     return (
       <div>
       {
@@ -78,6 +84,7 @@ export default class GamesList extends React.Component {
           </Link>
         </section>
         {
+          !this.state.filteredGames ? null :
           this.state.filteredGames.map((game, i) => {
             return (
             <Card className='card' key={"game"+i}>
@@ -91,10 +98,10 @@ export default class GamesList extends React.Component {
                     <Link to={`/games/${game._id}`}>
                       <Button variant="btn btn-success">More</Button>
                     </Link>
-                    <Button className='btn-add' onClick={this.togglePopup.bind(this)} variant="btn btn-success">Add to training</Button>
+                    <Button className='btn-add' onClick={() => this.togglePopup(game)} variant="btn btn-success">Add to training</Button>
                     {
                       this.state.showPopup ?  
-                    <Popup show={this.state.showPopup} game={game} closePopup={this.togglePopup.bind(this)} />  
+                    <Popup show={this.state.showPopup} game={this.state.selectedGame} closePopup={this.togglePopup.bind(this)} />  
                     : null  
                     }  
                   </div>

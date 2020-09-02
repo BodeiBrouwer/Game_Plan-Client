@@ -13,7 +13,6 @@ export default class TrainingsList extends React.Component {
   componentDidMount() {
     axios.get(`${API_URL}/trainings`, {withCredentials: true})
       .then((trainings) => {
-        console.lo
         this.setState({
           trainings: trainings.data,
         })

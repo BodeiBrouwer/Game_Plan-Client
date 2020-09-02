@@ -29,9 +29,9 @@ export default class Popup extends React.Component {
     })
   }
 
-  handleAdd = () => {
-    console.log(this.state.selectedTrainings)
-    axios.patch(`${API_URL}/games/${this.state.selectedTrainings}/${this.props.game._id}/add`, {}, {withCredentials: true})
+  handleAdd = (game) => {
+    console.log('Add', game)
+    axios.patch(`${API_URL}/games/${this.state.selectedTrainings}/${game._id}/add`, {}, {withCredentials: true})
     .then((training) => {
       this.setState({
         selectedTrainings: training.data,
@@ -59,7 +59,7 @@ export default class Popup extends React.Component {
       </fieldset>
         
         <Link to={`/games`}>
-          <Button onClick={() => {this.handleAdd(); this.props.closePopup();}} variant="btn btn-success">Add</Button>
+          <Button onClick={() => {this.handleAdd(this.props.game); this.props.closePopup();}} variant="btn btn-success">Add</Button>
         </Link>
       </div>
       }

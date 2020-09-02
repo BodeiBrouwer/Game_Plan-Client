@@ -213,8 +213,7 @@ class App extends React.Component {
       notes: updatedTraining.notes,
     },  {withCredentials: true})
     .then(() => {
-        //Use a map to always return a new array. ForEach does not
-        // Please note that down. 
+
         let cloneTrainings = this.state.trainings.map((training) => {
             if (training._id === updatedTraining._id) {
               training = updatedTraining 

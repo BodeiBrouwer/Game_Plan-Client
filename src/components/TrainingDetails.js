@@ -8,19 +8,35 @@ export default class TrainingDetails extends React.Component {
 
   state = {
     training: [],
+    selectedGame: null,
     }
 
   componentDidMount() {
     let id = this.props.match.params.id
-        axios.get(`${API_URL}/trainings/${id}`, {withCredentials: true})
-            .then((training) => {
-                this.setState({
-                  training: training.data,
-                })
-            })
+      axios.get(`${API_URL}/trainings/${id}`, {withCredentials: true})
+      .then((training) => {
+        this.setState({
+        training: training.data,
+        })
+      })
+    }
+
+    handleDelete = (game) => {
+      axios.patch(`${API_URL}/games/${this.state.training._id}/${game._id}/delete`, {}, {withCredentials: true})
+      .then((game) => {
+        this.setState({
+          selectedGame: game.data,
+        }, () => {
+          this.props.history.push(`/trainings/${this.state.training._id}`)
+        })
+      })
     }
   
   render() {
+    if (!this.state.training) {
+      return <p>Loading .. </p>
+    }
+
     const {name, duration, description, notes, _id, games} = this.state.training
 
     return (
@@ -41,9 +57,13 @@ export default class TrainingDetails extends React.Component {
         <h4>Notes</h4>
         <p>{notes}</p>
         <h4>Games</h4>
+        
         {
+          !games ? (<p>Loading ... </p>) : 
+
           games.map((game, i) => {
             return (
+            <>
             <Card key={"mygame"+i}>
               <Card.Header className='card-header'><span className='card-title'><h5>{game.name}</h5> <h5>{game.category.charAt(0).toUpperCase() + game.category.slice(1)}</h5></span></Card.Header>
               <Card.Body>
@@ -53,8 +73,10 @@ export default class TrainingDetails extends React.Component {
                 <Link to={`/games/${game._id}`}>
                   <Button variant="btn btn-success">More</Button>
                 </Link>
+                  <Button onClick={() => this.handleDelete(game)} variant="btn btn-success">Remove from training</Button>
               </Card.Body>
             </Card>
+            </>
             )
           })
         }
