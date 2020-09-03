@@ -23,6 +23,10 @@ body > #root > div{
   margin: 0px 5px;
 }
 
+.btn-404 {
+  margin-top: 30px;
+}
+
 .bt.add {
   height: 30px;
 }

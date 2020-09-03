@@ -21,6 +21,8 @@ export default class LoginPage  extends React.Component {
             <input name="password" type="password" className="form-control" id="exampleInputPassword1" />
           </div>
 
+          {this.props.errorMessage && <p className="auth-error"><b>{this.props.errorMessage}</b></p>}
+
           <div className='login-btns'>
             <button type="submit" className="btn btn-success">Submit</button>
             <Link to={`signup`}>

@@ -20,8 +20,10 @@ export default function SignupPage(props){
                 <label htmlFor="exampleInputPassword1">Password</label>
                 <input name="password" type="password" className="form-control" id="exampleInputPassword1" />
             </div>
+            {props.errorMessage && <p className="auth-error"><b>{props.errorMessage}</b></p>}
             <button type="submit" className="btn btn-success">Submit</button>
         </form>
+        
     </div>
     )
 }

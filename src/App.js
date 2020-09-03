@@ -14,6 +14,7 @@ import TrainingCreate from './components/TrainingCreate'
 import TrainingsList from './components/TrainingsList'
 import TrainingDetails from './components/TrainingDetails'
 import TrainingEdit from './components/TrainingEdit'
+import NotFound from './components/404'
 
 import {Switch, Route, withRouter} from 'react-router-dom'
 
@@ -23,6 +24,8 @@ class App extends React.Component {
     games: [],
     trainings: [],
     loggedInUser: null,
+    signUpError: null,
+    logInError: null,
   }
     
    componentDidMount() {
@@ -63,6 +66,11 @@ class App extends React.Component {
           this.props.history.push('/games')
         })
       })  
+      .catch((err) => {
+        this.setState({
+          signUpError: err.response.data.errorMessage
+        })
+      }) 
   }
 
   handleSignIn = (e) => {
@@ -80,6 +88,11 @@ class App extends React.Component {
           this.props.history.push('/games')
         })
       })  
+      .catch((err) => {
+        this.setState({
+          logInError: err.response.data.errorMessage
+        })
+      }) 
   }
 
   handleLogOut = (e) => {
@@ -237,7 +250,14 @@ class App extends React.Component {
     return (
       <div className="body">
         {
-          this.props.location.pathname !== '/signup' && this.props.location.pathname !== '/login' && this.props.location.pathname !== '/' ? (
+          this.props.location.pathname === '/games' || 
+          this.props.location.pathname === '/games/create' || 
+          this.props.location.pathname === '/games/:id' ||
+          this.props.location.pathname === '/games/:id/edit' ||
+          this.props.location.pathname === '/trainings' ||
+          this.props.location.pathname === '/trainings/create' ||
+          this.props.location.pathname === '/trainings/:id' ||
+          this.props.location.pathname === '/trainings/:id/edit' ? (
         <>
           <NavBar loggedInUser={this.state.loggedInUser} onLogout={this.handleLogOut}/>
           <img className='header-image' src={require("./images/header-image.jpg")} alt='row of pineapples'/>
@@ -248,10 +268,10 @@ class App extends React.Component {
             return <LoginPage {...routeProps}/>
           }} />
           <Route path="/login" render={(routeProps) => {
-            return <LoginPage onSignIn={this.handleSignIn} {...routeProps}/>
+            return <LoginPage onSignIn={this.handleSignIn} errorMessage={this.state.logInError} {...routeProps}/>
           }} />
           <Route path="/signup" render={(routeProps) => {
-            return <SignupPage onSignUp={this.handleSignUp} {...routeProps}/>
+            return <SignupPage onSignUp={this.handleSignUp} errorMessage={this.state.signUpError} {...routeProps}/>
           }} />
           <Route exact path="/games" render={(routeProps) => {
             return <GamesList loggedInUser={this.state.loggedInUser} {...routeProps}/>
@@ -277,6 +297,7 @@ class App extends React.Component {
           <Route  path="/trainings/:id/edit" render={(routeProps) => {
             return <TrainingEdit onTrainingEdit={this.handleTrainingEdit} loggedInUser={this.state.loggedInUser} {...routeProps}/>
           }} />
+          <Route component={NotFound} />
         </Switch>
         {this.props.children}
       </div>

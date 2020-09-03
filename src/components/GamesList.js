@@ -81,7 +81,7 @@ export default class GamesList extends React.Component {
       {
         !this.props.loggedInUser ? <p>Sign in <Link to="/login">here</Link></p> : 
         <div className='center-piece'>
-        <h1> Search Our Game Database</h1>
+        <h1> Find the game</h1>
         <section className='search-section'>
           <Select 
             className='select'
