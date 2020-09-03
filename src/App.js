@@ -15,6 +15,7 @@ import TrainingsList from './components/TrainingsList'
 import TrainingDetails from './components/TrainingDetails'
 import TrainingEdit from './components/TrainingEdit'
 import NotFound from './components/404'
+import UserDetails from './components/UserDetails'
 
 import {Switch, Route, withRouter} from 'react-router-dom'
 
@@ -291,6 +292,9 @@ class App extends React.Component {
           }} />
           <Route  path="/trainings/:id/edit" render={(routeProps) => {
             return <TrainingEdit onTrainingEdit={this.handleTrainingEdit} loggedInUser={this.state.loggedInUser} {...routeProps}/>
+          }} />
+          <Route exact path="/user/:id" render={(routeProps) => {
+            return <UserDetails loggedInUser={this.state.loggedInUser} {...routeProps}/>
           }} />
           <Route component={NotFound} />
         </Switch>
