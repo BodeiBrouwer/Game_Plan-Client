@@ -106,7 +106,7 @@ export default class GamesList extends React.Component {
                 </Card.Text>
                 <Card.Text className='card-game-creator'>
                 Creator:
-                  {User.userName}
+                  {/* {User.userName} */}
                 </Card.Text>
                 <div className='btn-with-like'>
                   <div className='btn-collection-card'>

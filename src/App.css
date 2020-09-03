@@ -171,6 +171,7 @@ h1, h2, h3, h4, h5, h6 {
   border: none;
   background-color: rgb(58,175,209);
   color: rgb(18, 73, 16);
+  font-weight: 800;
 }
 
 .logout-btn:focus,
@@ -202,7 +203,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar--link {
-  font-weight: 500;
+  font-weight: 800;
+  font-size: 1.4rem;
   display: flex;
   list-style: none;
 }
