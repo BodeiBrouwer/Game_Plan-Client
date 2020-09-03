@@ -41,10 +41,10 @@ export default class TrainingDetails extends React.Component {
     const {name, duration, description, notes, _id, games} = this.state.training
 
     return (
-      <div>
+      <div className='form-page' >
       {
         !this.props.loggedInUser ? <p>Sign in <Link to="/login">here</Link></p> : 
-        <div className='center-piece details'>
+        <div className='form-field'>
         <h1>{name}</h1>
         <div className='btn-collection-card'>
           <Link to={`/trainings/${_id}/edit`}>
@@ -52,16 +52,33 @@ export default class TrainingDetails extends React.Component {
           </Link>
           <Button onClick={() => this.props.onTrainingDelete(_id)} variant="btn btn-success">Delete</Button>
         </div>
-        <h4>{duration} min</h4>
-        <h4>Description</h4>
-        <p>{description}</p>
-        <h4>Notes</h4>
-        <p>{notes}</p>
-        <h4>Games</h4>
+        <hr/>
+        <h5>{duration} min</h5>
+
+        <div className='details-field'>
+          <hr/>
+          <h4>Description</h4>
+          <p>{description}</p>
+        </div>
+
+
+        {
+          !notes ? null :
+          <div className='details-field'>
+            <hr/>
+            <h4>Notes</h4>
+            <p>{notes}</p>
+          </div>
+        }
+
         
         {
           !games ? (<p>Loading ... </p>) : 
-
+          games.length === 0 ? null :
+          <>
+            <hr/>
+            <h4>Games</h4>
+          {
           games.map((game, i) => {
             return (
             <>
@@ -80,9 +97,14 @@ export default class TrainingDetails extends React.Component {
             </>
             )
           })
+          }
+          </>
         }
       </div>
     }
+      <div className='form-image'>
+        <img  src={require("../images/pineapple-pink-glasses.png")} alt='festive pineapple'/>
+      </div>
     </div>
     )
   }

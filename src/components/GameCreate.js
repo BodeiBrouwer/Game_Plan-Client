@@ -29,7 +29,7 @@ export default class GameCreate extends React.Component {
         
         <form onSubmit={(e)=> this.props.onSubmit(e, this.state.newgame)}>
         <h1>Create a new game</h1>
-          <fieldset>
+          <fieldset className='form-field'>
 
             <p>What type of game is it?*</p>
             <div>

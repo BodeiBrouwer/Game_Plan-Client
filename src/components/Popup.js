@@ -20,8 +20,7 @@ export default class Popup extends React.Component {
       }) 
   }
 
-  handleChange = (e, event) => {
-    e.preventDefault();
+  handleChange = (event) => {
     let value = event.currentTarget.value
     let cloneTraining = JSON.parse(JSON.stringify(this.state.selectedTrainings))
     cloneTraining = value
@@ -30,8 +29,7 @@ export default class Popup extends React.Component {
     })
   }
 
-  handleAdd = (e, game) => {
-    e.preventDefault();
+  handleAdd = (game) => {
     console.log('Add', game)
     axios.patch(`${API_URL}/games/${this.state.selectedTrainings}/${game._id}/add`, {}, {withCredentials: true})
     .then((training) => {

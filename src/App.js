@@ -250,14 +250,9 @@ class App extends React.Component {
     return (
       <div className="body">
         {
-          this.props.location.pathname === '/games' || 
-          this.props.location.pathname === '/games/create' || 
-          this.props.location.pathname === '/games/:id' ||
-          this.props.location.pathname === '/games/:id/edit' ||
-          this.props.location.pathname === '/trainings' ||
-          this.props.location.pathname === '/trainings/create' ||
-          this.props.location.pathname === '/trainings/:id' ||
-          this.props.location.pathname === '/trainings/:id/edit' ? (
+          this.props.location.pathname !== '/' && 
+          this.props.location.pathname !== '/login' && 
+          this.props.location.pathname !== '/signup' ? (
         <>
           <NavBar loggedInUser={this.state.loggedInUser} onLogout={this.handleLogOut}/>
           <img className='header-image' src={require("./images/header-image.jpg")} alt='row of pineapples'/>

@@ -9,7 +9,7 @@ export default class LoginPage  extends React.Component {
       <div className="login-page">
       <section className="welcome-text">
         <img src={require("../images/Game-Plan-logo.png")}  alt='logo Game Plan'/>
-        <h3> Plan the perfect improv training  with the help of our game database </h3>
+        <h3>Plan the perfect improv training  with the help of our game database</h3>
       </section>
         <form className="form login-form" onSubmit={this.props.onSignIn}>
           <div className="form-group">

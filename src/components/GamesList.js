@@ -61,7 +61,6 @@ export default class GamesList extends React.Component {
     })
   }
 
-
   togglePopup = (game) => { 
     this.setState({  
          showPopup: !this.state.showPopup ,

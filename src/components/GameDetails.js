@@ -24,19 +24,18 @@ export default class GameDetails extends React.Component {
   render() {
     const {name, category, description, purpose, credit, video, _id, creator} = this.state.game
 
+    if (!this.state.game) {
+      return <p>Loading .. </p>
+    }
+
     return (
-      <div>
+      <div className='form-page' >
       {
         !this.props.loggedInUser ? <p>Sign in <Link to="/login">here</Link></p> : 
-        <div>
+        <div className='form-field'>
         <h1>{name}</h1>
-        <p>{category}</p>
-        <p>{description}</p>
-        <p>{purpose}</p>
-        <p>{credit}</p>
-        <ReactPlayer url={video}/>
 
-      {
+        {
         this.props.loggedInUser._id !== creator ? null : 
         <>
         <Link to={`/games/${_id}/edit`}>
@@ -45,8 +44,46 @@ export default class GameDetails extends React.Component {
         <Button onClick={() => this.props.onGameDelete(_id)}  variant="btn btn-success">Delete</Button>
         </>
       }
+
+        <div className='details-field'>
+          <hr/>
+          <h4>Type</h4>
+          <p>{category.charAt(0).toUpperCase() + category.slice(1)}</p>
+        </div>
+
+        <div className='details-field'>
+          <hr/>
+          <h4>Description</h4>
+          <p>{description}</p>
+        </div>
+
+        {
+          !purpose ? null :
+          <div className='details-field'>
+            <hr/>
+            <h4>Purpose</h4>
+            <p>{purpose}</p>
+          </div>
+        }
+        
+        {
+          !credit ? null :
+          <div className='details-field'>
+            <hr/>
+            <h4>Credits</h4>
+            <p>{credit}</p>
+          </div>
+        }
+
+        {
+          !video ? null :
+          <ReactPlayer url={video}/>
+        }
       </div>
       }
+      <div className='form-image'>
+        <img  src={require("../images/pineapple-pink-glasses.png")} alt='festive pineapple'/>
+      </div>
     </div>
     )
   }

@@ -93,9 +93,15 @@ form {
   width: 75%;
 }
 
+.form-controle {
+  width: 350px;
+}
+
 .form-field {
   margin-top: 20px;
   width: 100%;
+  background-color: rgb(255,255,255, 0.4);
+  padding: 10px;
 }
 
 .form-image {
@@ -106,6 +112,7 @@ form {
 .form-page {
   display: flex;
   flex-direction: row;
+  margin-left: 50px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -119,6 +126,15 @@ h1, h2, h3, h4, h5, h6 {
 .header-image {
   width: 100%;
   height: auto;
+}
+
+hr {
+  color: rgb(40,168,69);
+  height: 5px;
+}
+
+input, textarea {
+  width: 350px;
 }
 
 .like-btn {
@@ -275,11 +291,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .welcome-text {
   color: rgb(40,168,69);
+  font-weight: 800;
+  background-color: rgb(255,255,255, 0.7);
+  padding: 20px;
   width: 320px;
   margin-top: 60px;
   display: flex;
   flex-direction: column;
   justify-items: center;
+
 }
 
 .welcome-text > p {
