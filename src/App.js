@@ -51,7 +51,6 @@ class App extends React.Component {
   handleSignUp = (e) => {
     e.preventDefault();
     const {username, email, password} = e.currentTarget;
-  
     axios.post(`${API_URL}/signup`, {
       username: username.value,
       email: email.value, 
