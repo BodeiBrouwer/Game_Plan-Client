@@ -261,7 +261,7 @@ class App extends React.Component {
         }
         <Switch>
           <Route exact path="/" render={(routeProps) => {
-            return <LoginPage {...routeProps}/>
+            return <LoginPage onSignIn={this.handleSignIn} errorMessage={this.state.logInError} {...routeProps}/>
           }} />
           <Route path="/login" render={(routeProps) => {
             return <LoginPage onSignIn={this.handleSignIn} errorMessage={this.state.logInError} {...routeProps}/>

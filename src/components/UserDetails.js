@@ -30,12 +30,11 @@ export default class UserDetails extends React.Component {
       {
         !this.props.loggedInUser ? <p>Sign in <Link to="/login">here</Link></p> : 
         <div className='form-field'>
-        <h1>{this.state.games[0].creator.username}'s games</h1>
-        {/* <h1>{this.state.games.creator._id}</h1> */}
         {
           !this.state.games ? (<p>Loading ... </p>) : 
           this.state.games.length === 0 ? null :
           <>
+          <h1>{this.state.games[0].creator.username}'s games</h1>
           {
             this.state.games.map((game, i) => {
             return (
