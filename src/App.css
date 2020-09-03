@@ -24,7 +24,7 @@ body > #root > div{
 }
 
 .btn-top-margin {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .bt.add {
@@ -266,7 +266,10 @@ input, textarea {
   right: 0;  
   bottom: 0;  
   margin: auto;  
-  background-color: rgba(40,168,69);  
+  background-color :rgb(58,175,209);  
+  padding: 20px;
+  border: solid rgb(18, 73, 16) 10px;
+  border-radius: 25px;
 }  
 .popup\_inner {  
   position: absolute;  
@@ -275,8 +278,11 @@ input, textarea {
   top: 25%;  
   bottom: 25%;  
   margin: auto;  
-  border-radius: 20px;  
-  background: white;  
+}
+
+.popup-input {
+  width: 10px;
+  margin: 6px;
 }
 
 .search-section{
@@ -294,8 +300,9 @@ input, textarea {
   font-weight: 800;
   background-color: rgb(255,255,255, 0.7);
   padding: 20px;
+  padding-bottom: 0px;
   width: 320px;
-  margin-top: 60px;
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   justify-items: center;

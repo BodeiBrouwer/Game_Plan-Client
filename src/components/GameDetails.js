@@ -44,12 +44,14 @@ export default class GameDetails extends React.Component {
         <Button onClick={() => this.props.onGameDelete(_id)}  variant="btn btn-success">Delete</Button>
         </>
       }
-
-        <div className='details-field'>
-          <hr/>
-          <h4>Type</h4>
-          <p>{category.charAt(0).toUpperCase() + category.slice(1)}</p>
-        </div>
+        { 
+          !category ? <p>Loading ...</p> :
+          <div className='details-field'>
+            <hr/>
+            <h4>Type</h4>
+            <p>{category.charAt(0).toUpperCase() + category.slice(1)}</p>
+          </div>
+        }
 
         <div className='details-field'>
           <hr/>

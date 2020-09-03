@@ -46,16 +46,19 @@ export default class Popup extends React.Component {
       <div className='popup\_inner'> 
       <fieldset>
         <h2>Your trainings</h2>
+        <hr/>
+        <div classname='popup-list'>
         {
           this.state.trainings.map((training, i) => {
             return(
-              <div key={"check"+i}>
-              <input onChange={this.handleChange} checked={this.state.selectedTrainings === training._id ? true : false} type="checkbox" name={training._id} value={training._id}></input>
+              <div className='popup-item' key={"check"+ training._id}>
+              <input className='popup-input' onChange={this.handleChange} checked={this.state.selectedTrainings === training._id ? true : false} type="checkbox" name={training._id} value={training._id}></input>
               <label htmlFor={training._id}>{training.name}</label>
             </div>
             )
           })
-        }   
+        }  
+        </div> 
       </fieldset>
         
         <Link to={`/games`}>

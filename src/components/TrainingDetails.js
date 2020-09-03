@@ -91,7 +91,7 @@ export default class TrainingDetails extends React.Component {
                 <Link to={`/games/${game._id}`}>
                   <Button variant="btn btn-success">More</Button>
                 </Link>
-                  <Button onClick={() => this.handleDelete(game)} variant="btn btn-success">Remove from training</Button>
+                  <Button onClick={() => this.handleDelete(game)} variant="btn btn-success btn-top-margin">Remove from training</Button>
               </Card.Body>
             </Card>
             </>
