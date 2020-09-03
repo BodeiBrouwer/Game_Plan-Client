@@ -10,12 +10,6 @@ export default class LikeButton extends Component {
   }
 
   componentDidMount() {
-    // axios.get(`${API_URL}/games/${id}`, {withCredentials: true})
-    //   .then((res) => {
-    //     this.setState({
-    //       game: res.data
-    //     })
-    //   })
     this.setState({
       game: this.props.game
     })

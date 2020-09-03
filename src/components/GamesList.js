@@ -32,8 +32,7 @@ export default class GamesList extends React.Component {
       })
   }
 
-  handleSearch = (e, selectedOption) => {
-    e.preventDefault();
+  handleSearch = (selectedOption) => {
     this.setState({ selectedOption });
     console.log(`Option selected:`, selectedOption);
 
@@ -54,12 +53,12 @@ export default class GamesList extends React.Component {
   }
 
   sortAscending = () => {
-    let sorted= this.state.filteredGames.sort((a, b) => (a.likes - b.likes))
-      .then(() => {
-        this.setState({
-          filteredGames: sorted
-        })
-      })      
+    console.log(this.state.filteredGames)
+    let sorted = []
+    sorted = this.state.filteredGames.sort((a, b) => (a.likes.length < b.likes.length) ? 1 : -1);
+    this.setState({
+      filteredGames: sorted
+    })
   }
 
 
@@ -92,21 +91,20 @@ export default class GamesList extends React.Component {
           <Button onClick={this.sortAscending} variant="btn btn-success btn-new-game">Sort by likes</Button>
         </section>
         <Link to={`/games/create`}>
-          <Button variant="btn btn-success btn-new-game">Create your own game</Button>
+          <Button variant="btn btn-success btn-top-margin btn-new-game">Create your own game</Button>
         </Link>
         {
           this.state.filteredGames === 0 ? null :
           this.state.filteredGames.map((game, i) => {
             return (
-            <Card className='card' key={"game"+i}>
+            <Card className='card' key={"game"+game._id}>
               <Card.Header className='card-header'><span className='card-title'><h5>{game.name}</h5> <h5>{game.category.charAt(0).toUpperCase() + game.category.slice(1)}</h5></span></Card.Header>
               <Card.Body>
                 <Card.Text className='card-game-descr overflow'>
                   {game.description}
                 </Card.Text>
                 <Card.Text className='card-game-creator'>
-                Creator:
-                  {/* {User.userName} */}
+                Creator: {game.creator.username}
                 </Card.Text>
                 <div className='btn-with-like'>
                   <div className='btn-collection-card'>
