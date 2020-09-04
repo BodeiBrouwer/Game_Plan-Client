@@ -15,11 +15,9 @@ export default class LikeButton extends Component {
     })
   }
 
-  incrementMe = (e) => {
-    e.preventDefault()
+  incrementMe = () => {
     axios.patch(`${API_URL}/games/${this.state.game._id}/like`, {}, {withCredentials: true})
     .then((game) => {
-      console.log(game)
       this.setState({
         game: game.data,
       })

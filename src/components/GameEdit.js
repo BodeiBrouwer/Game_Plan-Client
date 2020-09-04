@@ -14,7 +14,6 @@ export default class GameEdit extends Component {
     let id = this.props.match.params.id
       axios.get(`${API_URL}/games/${id}`, {withCredentials: true})
         .then((game) => {
-          console.log(game.data)
           this.setState({
             game: game.data,
           })
@@ -22,7 +21,6 @@ export default class GameEdit extends Component {
   }
 
   handleCatChange = (event) => {
-    event.preventDefault();
       let key = event.currentTarget.name
       let value = event.currentTarget.value
       const cloneGame = JSON.parse(JSON.stringify(this.state.game))
@@ -34,45 +32,40 @@ export default class GameEdit extends Component {
   }
 
     handleNameChange = (e) => {
-      e.preventDefault();
         let updatedGame = JSON.parse(JSON.stringify(this.state.game))
-        updatedGame.name = e.currentTarget.value //updating name
+        updatedGame.name = e.currentTarget.value
         this.setState({
             game: updatedGame
         })
     }
 
     handleDescChange = (e) => {
-      e.preventDefault();
         let updatedGame = JSON.parse(JSON.stringify(this.state.game))
-        updatedGame.description = e.currentTarget.value //updating description
+        updatedGame.description = e.currentTarget.value
         this.setState({
             game: updatedGame
         })
     }
 
     handlePurposeChange = (e) => {
-      e.preventDefault();
       let updatedGame = JSON.parse(JSON.stringify(this.state.game))
-      updatedGame.purpose = e.currentTarget.value //updating description
+      updatedGame.purpose = e.currentTarget.value
       this.setState({
           game: updatedGame
       })
     }
 
     handleCreditChange = (e) => {
-      e.preventDefault();
       let updatedGame = JSON.parse(JSON.stringify(this.state.game))
-      updatedGame.credit = e.currentTarget.value //updating description
+      updatedGame.credit = e.currentTarget.value
       this.setState({
           game: updatedGame
       })
     }
 
     handleVideoChange = (e) => {
-      e.preventDefault();
       let updatedGame = JSON.parse(JSON.stringify(this.state.game))
-      updatedGame.video = e.currentTarget.value //updating description
+      updatedGame.video = e.currentTarget.value
       this.setState({
           game: updatedGame
       })
@@ -80,25 +73,28 @@ export default class GameEdit extends Component {
 
 
     render() {
+      if (!this.state.game) {
+        return <p>Loading .. </p>
+      }
         const {name, description, purpose, credit, video} = this.state.game
         return (
           <div className='form-page'>
             <form>
             <h1>Game changer</h1>
-              <fieldset>
+              <fieldset className='form-field'>
                 <div>
                 <p>What type of game is it?</p>
-                  <input onChange={this.handleCatChange} checked={this.state.game.category === "warm-up" ? true : false} type="checkbox" name="category" value="warm-up"></input>
+                  <input className='popup-input' onChange={this.handleCatChange} checked={this.state.game.category === "warm-up" ? true : false} type="checkbox" name="category" value="warm-up"></input>
                   <label htmlFor="warm-up">Warm-up</label>
                 </div>
 
                 <div>
-                  <input onChange={this.handleCatChange} checked={this.state.game.category === "exercise" ? true : false} type="checkbox" name="category" value="exercise"></input>
+                  <input className='popup-input' onChange={this.handleCatChange} checked={this.state.game.category === "exercise" ? true : false} type="checkbox" name="category" value="exercise"></input>
                   <label htmlFor="exercise">Exercise</label>
                 </div>
 
                 <div>
-                  <input onChange={this.handleCatChange} checked={this.state.game.category === "scenes" ? true : false} type="checkbox" name="category" value="scenes"></input>
+                  <input className='popup-input' onChange={this.handleCatChange} checked={this.state.game.category === "scenes" ? true : false} type="checkbox" name="category" value="scenes"></input>
                   <label htmlFor="scenes">Scenes</label>
                 </div>
               </fieldset>
@@ -128,7 +124,7 @@ export default class GameEdit extends Component {
                 <input onChange={this.handleVideoChange} name="name" type="text" placeholder="Enter video url" value={video}></input>
               </div>
 
-              <Button onClick={() => this.props.onGameEdit(this.state.game)} variant="btn btn-success btn-create" type="submit">Edit</Button>
+              <Button onClick={(e) => this.props.onGameEdit(e, this.state.game)} variant="btn btn-success btn-create" type="submit">Edit</Button>
           </form>
           <div className='form-image'>
             <img  src={require("../images/festive-pineapple.png")} alt='festive pineapple'/>

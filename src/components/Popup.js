@@ -30,7 +30,6 @@ export default class Popup extends React.Component {
   }
 
   handleAdd = (game) => {
-    console.log('Add', game)
     axios.patch(`${API_URL}/games/${this.state.selectedTrainings}/${game._id}/add`, {}, {withCredentials: true})
     .then((training) => {
       this.setState({

@@ -33,17 +33,17 @@ export default class GameCreate extends React.Component {
 
             <p>What type of game is it?*</p>
             <div>
-              <input onChange={this.handleChange} checked={this.state.newgame.category === "warm-up" ? true : false} type="checkbox" name="category" value="warm-up"></input>
+              <input className='popup-input' onChange={this.handleChange} checked={this.state.newgame.category === "warm-up" ? true : false} type="checkbox" name="category" value="warm-up"></input>
               <label htmlFor="warm-up">Warm-up</label>
             </div>
 
             <div>
-              <input onChange={this.handleChange} checked={this.state.newgame.category === "exercise" ? true : false} type="checkbox" name="category" value="exercise"></input>
+              <input className='popup-input' onChange={this.handleChange} checked={this.state.newgame.category === "exercise" ? true : false} type="checkbox" name="category" value="exercise"></input>
               <label htmlFor="exercise">Exercise</label>
             </div>
 
             <div>
-              <input onChange={this.handleChange} checked={this.state.newgame.category === "scenes" ? true : false} type="checkbox" name="category" value="scenes"></input>
+              <input className='popup-input' onChange={this.handleChange} checked={this.state.newgame.category === "scenes" ? true : false} type="checkbox" name="category" value="scenes"></input>
               <label htmlFor="scenes">Scenes</label>
             </div>
           </fieldset>

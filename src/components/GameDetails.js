@@ -1,11 +1,11 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
 import ReactPlayer from 'react-player/lazy'
 import axios from 'axios'
 import {API_URL} from '../config'
 
-export default class GameDetails extends React.Component {
+class GameDetails extends React.Component {
 
   state = {
     game: {},
@@ -38,7 +38,7 @@ export default class GameDetails extends React.Component {
         {
         this.props.loggedInUser._id !== creator ? null : 
         <>
-        <Link to={`/games/${_id}/edit`}>
+        <Link history={this.props.history} to={`/games/${_id}/edit`}>
           <Button variant="btn btn-success">Edit</Button>
         </Link>
         <Button onClick={() => this.props.onGameDelete(_id)}  variant="btn btn-success">Delete</Button>
@@ -90,3 +90,5 @@ export default class GameDetails extends React.Component {
     )
   }
 }
+
+export default withRouter(GameDetails)

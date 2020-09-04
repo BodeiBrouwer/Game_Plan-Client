@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {Card, Button} from 'react-bootstrap'
 import {API_URL} from '../config'
 import axios from 'axios'
@@ -13,7 +13,7 @@ const options = [
   {label: 'Scenes', value: 'scenes'}
 ];
 
-export default class GamesList extends React.Component {
+class GamesList extends React.Component {
 
   state = {
     games: [],
@@ -34,12 +34,10 @@ export default class GamesList extends React.Component {
 
   handleSearch = (selectedOption) => {
     this.setState({ selectedOption });
-    console.log(`Option selected:`, selectedOption);
 
     let cloneFilter = []
     if (selectedOption) {
       let categories = selectedOption.map(option => option.value)
-      console.log(categories)
       cloneFilter = this.state.games.filter((game) => {
         return categories.includes(game.category)
       })
@@ -53,7 +51,6 @@ export default class GamesList extends React.Component {
   }
 
   sortAscending = () => {
-    console.log(this.state.filteredGames)
     let sorted = []
     sorted = this.state.filteredGames.sort((a, b) => (a.likes.length < b.likes.length) ? 1 : -1);
     this.setState({
@@ -130,4 +127,6 @@ export default class GamesList extends React.Component {
     )
   }
 }
+
+export default withRouter(GamesList)
 

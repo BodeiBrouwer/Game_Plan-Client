@@ -1,10 +1,10 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {Button, Card} from 'react-bootstrap'
 import axios from 'axios'
 import {API_URL} from '../config'
 
-export default class TrainingDetails extends React.Component {
+class TrainingDetails extends React.Component {
 
   state = {
     training: [],
@@ -82,7 +82,7 @@ export default class TrainingDetails extends React.Component {
           games.map((game, i) => {
             return (
             <>
-            <Card key={"mygame"+i}>
+            <Card key={"mytraining"+ game._id}>
               <Card.Header className='card-header'><span className='card-title'><h5>{game.name}</h5> <h5>{game.category.charAt(0).toUpperCase() + game.category.slice(1)}</h5></span></Card.Header>
               <Card.Body>
                 <Card.Text className='card-game-descr overflow'>
@@ -109,3 +109,5 @@ export default class TrainingDetails extends React.Component {
     )
   }
 }
+
+export default withRouter(TrainingDetails)

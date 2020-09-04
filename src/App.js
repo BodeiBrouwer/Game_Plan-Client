@@ -123,7 +123,6 @@ class App extends React.Component {
         .then((res) => {
           //redirect
           let newGame = res.data
-          console.log(res.data)
           let cloneGames = JSON.parse(JSON.stringify(this.state.games))
           cloneGames.unshift(newGame)
           this.setState({
@@ -196,7 +195,7 @@ class App extends React.Component {
   }
 
   handleGameEdit = (e, updatedGame) => {
-    e.preventDefault();
+    e.preventDefault()
     axios.patch(`${API_URL}/games/${updatedGame._id}`, {
       category: updatedGame.category,
       name: updatedGame.name,
@@ -206,8 +205,6 @@ class App extends React.Component {
       video: updatedGame.video
     },  {withCredentials: true})
     .then(() => {
-        //Use a map to always return a new array. ForEach does not
-        // Please note that down. 
         let cloneGames = this.state.games.map((game) => {
             if (game._id === updatedGame._id) {
               game = updatedGame 
@@ -217,13 +214,13 @@ class App extends React.Component {
         this.setState({
           games: cloneGames
         }, () => {
-          this.props.history.push('/games')
+          this.props.history.push(`/games/${updatedGame._id}`)
         })
-    })
+      })
   }
 
   handleTrainingEdit = (e, updatedTraining) => {
-    e.preventDefault();
+    e.preventDefault()
     axios.patch(`${API_URL}/trainings/${updatedTraining._id}`, {
       name: updatedTraining.name,
       description: updatedTraining.description, 
@@ -241,7 +238,7 @@ class App extends React.Component {
         this.setState({
           trainings: cloneTrainings
         }, () => {
-          this.props.history.push('/trainings')
+          this.props.history.push(`/trainings/${updatedTraining._id}`)
         })
     })
   }
