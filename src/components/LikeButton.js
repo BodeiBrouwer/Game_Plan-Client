@@ -6,12 +6,14 @@ import {API_URL} from '../config'
 export default class LikeButton extends Component {
 
   state = {
-    game: ''
+    game: '',
+    likeList: []
   }
 
   componentDidMount() {
     this.setState({
-      game: this.props.game
+      game: this.props.game,
+      likeList: this.state.game.likes
     })
   }
 
@@ -32,7 +34,11 @@ export default class LikeButton extends Component {
       <div className='likes'>
       <p>{this.state.game.likes.length}</p>
         <button className='like-count' onClick={this.incrementMe}>
+        {
+          this.state.game.likes.includes(this.props.loggedInUser._id) ? 
+          <img className='like-btn liked' src={require('../images/pineapple.png')} alt='pineapple'/> : 
           <img className='like-btn' src={require('../images/pineapple.png')} alt='pineapple'/>
+        }
         </button>
       </div>
     )

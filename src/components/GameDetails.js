@@ -38,7 +38,7 @@ class GameDetails extends React.Component {
         {
         this.props.loggedInUser._id !== creator ? null : 
         <>
-        <Link history={this.props.history} to={`/games/${_id}/edit`}>
+        <Link to={`/games/${_id}/edit`}>
           <Button variant="btn btn-success">Edit</Button>
         </Link>
         <Button onClick={() => this.props.onGameDelete(_id)}  variant="btn btn-success">Delete</Button>

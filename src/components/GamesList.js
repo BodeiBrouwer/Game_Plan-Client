@@ -114,7 +114,7 @@ class GamesList extends React.Component {
                     : null  
                     }  
                   </div>
-                  <LikeButton className='like-btn' game={game}/>
+                  <LikeButton loggedInUser={this.props.loggedInUser} className='like-btn' game={game}/>
                 </div>
               </Card.Body>
             </Card>

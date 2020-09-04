@@ -143,9 +143,21 @@ input, textarea {
   justify-content: flex-end;
 }
 
+.like-btn:focus,
+.like-btn:active{
+	border: none;
+	background:none;
+	outline: none;
+	padding:0;
+}
+
 .likes {
   display: flex;
   flex-direction: row;
+}
+
+.liked {
+  border: solid rgb(40,168,69); 
 }
 
 .likes > p {
