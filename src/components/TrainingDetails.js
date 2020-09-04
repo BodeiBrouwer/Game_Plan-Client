@@ -50,7 +50,7 @@ class TrainingDetails extends React.Component {
           <Link to={`/trainings/${_id}/edit`}>
             <Button variant="btn btn-success">Edit</Button>
           </Link>
-          <Button onClick={() => this.props.onTrainingDelete(_id)} variant="btn btn-success">Delete</Button>
+          <Button onClick={(e) => this.props.onTrainingDelete(e, _id)} variant="btn btn-success">Delete</Button>
         </div>
         <hr/>
         <h5>{duration} min</h5>
@@ -91,7 +91,7 @@ class TrainingDetails extends React.Component {
                 <Link to={`/games/${game._id}`}>
                   <Button variant="btn btn-success">More</Button>
                 </Link>
-                  <Button onClick={() => this.handleDelete(game)} variant="btn btn-success btn-top-margin">Remove from training</Button>
+                  <Button onClick={(e) => this.handleDelete(e, game)} variant="btn btn-success btn-top-margin">Remove from training</Button>
               </Card.Body>
             </Card>
             </>

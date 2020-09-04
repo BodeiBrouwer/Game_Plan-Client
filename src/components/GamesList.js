@@ -100,7 +100,7 @@ class GamesList extends React.Component {
                   {game.description}
                 </Card.Text>
                 <Card.Text className='card-game-creator'>
-                Creator: <Link to={`/user/${game.creator._id}`}>{game.creator.username}</Link>
+                <b>Creator:</b> <Link to={`/user/${game.creator._id}`}>{game.creator.username}</Link>
                 </Card.Text>
                 <div className='btn-with-like'>
                   <div className='btn-collection-card'>

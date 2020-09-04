@@ -1,18 +1,28 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Navbar, Nav} from 'react-bootstrap'
 
-const Navbar = (props) => {
+const NavBar = (props) => {
   return (
-    <nav className="navbar">
-      <div className="navbar--logo-holder">
-        <Link to="/games"><img src={require("../images/Game-Plan-logo.png")} alt="logo" className="navbar--logo" /></Link>
-      </div>
-      <ul className="navbar--link">
-        <li className="navbar--link-item"><Link className="navbar--link-item" to="/games">Games</Link></li>
-        <li className="navbar--link-item"><Link className="navbar--link-item" to="/games/create">Create Game</Link></li>
-        <li className="navbar--link-item"><Link className="navbar--link-item" to="/trainings">My Trainings</Link></li>
-        <li className="navbar--link-item"><button className='logout-btn' onClick={props.onLogout}>Log Out</button></li>
-      </ul>
-    </nav>
+    <Navbar expand="lg">
+    <Navbar.Brand href="/games">
+      <img
+        src={require("../images/Game-Plan-logo.png")}
+        width="150"
+        height="30"
+        className="d-inline-block align-top"
+        alt="Game Plan logo"
+      />
+    </Navbar.Brand>
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="navbar--link" className="mr-auto">
+        <Nav.Link className="navbar--link-item" href="/games">Games</Nav.Link>
+        <Nav.Link className="navbar--link-item" href="/games/create">Create Game</Nav.Link>
+        <Nav.Link className="navbar--link-item" href="/games">My Trainings</Nav.Link>
+        <Nav.Link className="navbar--link-item" onClick={props.onLogout} >Log out</Nav.Link>
+      </Nav>
+    </Navbar.Collapse>
+  </Navbar>
   )};
-  export default Navbar;
+  export default NavBar;
+

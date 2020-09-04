@@ -21,14 +21,15 @@ body > #root > div{
 .btn {
   width: 150px;
   margin: 0px 5px;
+  max-height: 40px;
 }
 
 .btn-top-margin {
   margin-top: 20px;
 }
 
-.bt.add {
-  height: 30px;
+.btn.add {
+  max-height: 30px;
 }
 
 .btn-new-game{
@@ -45,6 +46,12 @@ body > #root > div{
 
 .btn-create {
   margin: 25px 0px;
+}
+
+.btn-with-like {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .card {
@@ -138,7 +145,7 @@ input, textarea {
 }
 
 .like-btn {
-  height: 40px;
+  max-height: 40px;
   display: flex;
   justify-content: flex-end;
 }
@@ -158,6 +165,7 @@ input, textarea {
 
 .liked {
   border: solid rgb(40,168,69); 
+  max-height: 40px;
 }
 
 .likes > p {
@@ -214,41 +222,17 @@ input, textarea {
 	padding:0;
 }
 
-.logout-btn:hover{
-  color: rgb(248,247,36);
-}
-
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 0.5rem 2.5rem;
-  width: 100%;
-  height: 15%;
   background-color: rgb(58,175,209);
 }
 
-.navbar--logo {
-  width: 10rem;
-  height: 2rem;
-  margin-right: 0.5rem;
-}
-
-.navbar--link {
+.mr-auto{
   font-weight: 800;
-  font-size: 1.4rem;
-  display: flex;
-  list-style: none;
-}
-
-.navbar--link-item {
-  margin: 0.4rem 1rem 0 0;
-  padding: 0 0.3rem;
-  cursor: pointer;
+  font-size: 1rem;
   color: rgb(18, 73, 16);
 }
 
-.navbar--link-item:hover{
+.mr-auto:hover{
   color: rgb(248,247,36);
   text-decoration: none;
 }

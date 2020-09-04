@@ -41,7 +41,7 @@ class GameDetails extends React.Component {
         <Link to={`/games/${_id}/edit`}>
           <Button variant="btn btn-success">Edit</Button>
         </Link>
-        <Button onClick={() => this.props.onGameDelete(_id)}  variant="btn btn-success">Delete</Button>
+        <Button onClick={(e) => this.props.onGameDelete(e, _id)}  variant="btn btn-success">Delete</Button>
         </>
       }
         { 
