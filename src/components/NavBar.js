@@ -18,7 +18,7 @@ const NavBar = (props) => {
       <Nav className="navbar--link" className="mr-auto">
         <Nav.Link className="navbar--link-item" href="/games">Games</Nav.Link>
         <Nav.Link className="navbar--link-item" href="/games/create">Create Game</Nav.Link>
-        <Nav.Link className="navbar--link-item" href="/games">My Trainings</Nav.Link>
+        <Nav.Link className="navbar--link-item" href="/trainings">My Trainings</Nav.Link>
         <Nav.Link className="navbar--link-item" onClick={props.onLogout} >Log out</Nav.Link>
       </Nav>
     </Navbar.Collapse>
