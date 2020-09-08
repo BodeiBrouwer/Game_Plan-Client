@@ -164,8 +164,8 @@ Add uploaded games to your training plan to put together the perfect improv trai
 
 # Links
 
-## Github Client
-https://trello.com/b/0b6qhdDv/planning-tool
+## Deployment
+https://gameplan-improv.herokuapp.com/games
 
 ## Github Client
 https://github.com/BodeiBrouwer/Game_Plan-Client
