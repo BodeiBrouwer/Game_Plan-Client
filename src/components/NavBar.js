@@ -15,7 +15,7 @@ const NavBar = (props) => {
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="navbar--link" className="mr-auto">
+      <Nav className="navbar--link mr-auto">
         <Nav.Link className="navbar--link-item" href="/games">Games</Nav.Link>
         <Nav.Link className="navbar--link-item" href="/games/create">Create Game</Nav.Link>
         <Nav.Link className="navbar--link-item" href="/trainings">My Trainings</Nav.Link>
